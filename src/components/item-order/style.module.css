@@ -1,0 +1,81 @@
+.image{
+    width: 120px;
+    height: 71px;
+}
+
+.item{
+    width: 350px;
+    height: 78px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trash{
+    padding: 5px 10px 5px 10px;
+    cursor: url(../../image/Select.cur), auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.trash:hover{
+    transition: all .3s ease;
+    border-radius: 10px;
+    background-color: brown;
+}
+
+/*Кнопка*************/
+.control{
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    /* padding: 0 5px 0 5px; */
+    background-color: black;
+    border-radius: 10px;
+    border: 1px solid rgba(119, 119, 119, 0.465);
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.control div:nth-child(1){
+    /* background-color: brown; */
+    width: 30%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: url(../../image/Select.cur), auto;
+}
+
+.control div:nth-child(3){
+    /* background-color: brown; */
+    width: 30%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: url(../../image/Select.cur), auto;
+}
+
+.control div:nth-child(1):hover{
+    background-color: rgba(119, 118, 118, 0.465);
+    transition: all .3s ease;
+}
+
+.control div:nth-child(3):hover{
+    background-color: rgba(119, 118, 118, 0.465);
+    transition: all .3s ease;
+}
+
+.control div:nth-child(2){
+    text-align: center;
+    width: 30%;
+}
+

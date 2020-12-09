@@ -1,0 +1,26 @@
+.item {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.item:hover {
+  background-color: #409921;
+  transition: all .5s ease;
+  padding: 10px;
+  color: white;
+  cursor: url(../../image/Select.cur), auto;
+}
+
+.text {
+  margin: 0;
+  padding-left: 10px;
+}
+
+.active {
+  background-color: #409921;
+}
+
+
