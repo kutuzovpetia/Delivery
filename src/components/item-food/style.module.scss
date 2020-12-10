@@ -1,0 +1,67 @@
+$selectCursor : url(../../image/Select.cur), auto;
+
+.container {
+  width: 177px;
+  margin-bottom: 30px;
+
+  .title {
+    font-size: 18px;
+    color: #128fae;
+    margin: 5px 0 10px 0;
+  }
+
+  .img {
+    border-radius: 10px;
+  }
+
+  .price {
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    margin-bottom: 15px;
+  }
+
+  .time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90px;
+  }
+
+  .like {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+  }
+
+  .basket {
+    padding: 5px;
+  }
+
+  .basket:hover {
+    cursor: pointer;
+    background-color: #F55A00;
+    transition: all .3s ease;
+    border-radius: 10px;
+    cursor: $selectCursor;
+  }
+
+  .heart {
+    font-size: 26px;
+    font-weight: 200;
+  }
+
+  .heart:hover {
+    color: red;
+    font-weight: 700;
+    transition: color .3s ease;
+    cursor: $selectCursor;
+  }
+
+  .buy {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

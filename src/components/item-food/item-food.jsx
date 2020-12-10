@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import s from "./style.module.css";
+import s from "./style.module.scss";
 import image from "../../image/f1.png";
 import clock from "../../image/clock.png";
 import basket from "../../image/basket.png";
