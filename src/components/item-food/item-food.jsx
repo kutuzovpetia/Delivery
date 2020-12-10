@@ -8,7 +8,7 @@ export default class ItemFood extends Component {
   
   constructor(props){
     super(props);
-    this.www = 'Заїбавсі!';
+    this.www = 'Заголовок)!';
     this.p = '333';
   }
 
