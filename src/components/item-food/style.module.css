@@ -14,15 +14,23 @@
 }
 
 .price {
+  display: flex;
+  justify-content: space-between;
   height: 20px;
   margin-bottom: 15px;
 }
 
 .time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 90px;
 }
 
 .like {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 60px;
 }
 
@@ -50,4 +58,9 @@
     cursor: pointer;
     transition: color .3s ease;
     cursor: url(../../image/Select.cur), auto;
+}
+
+.buy{
+  display: flex;
+  justify-content: space-between;
 }

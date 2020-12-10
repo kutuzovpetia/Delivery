@@ -12,6 +12,7 @@
   padding: 10px;
   color: white;
   cursor: url(../../image/Select.cur), auto;
+  text-decoration: none;
 }
 
 .text {

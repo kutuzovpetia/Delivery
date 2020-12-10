@@ -31,13 +31,13 @@ export default class ItemOrder extends Component {
   render() {
 
     return (
-      <div className={`${s.item} d-flex justify-content-between`}>
+      <div className={`${s.item}`}>
         <div>
           <img className={s.image} src={img} alt="..."></img>
         </div>
 
         <div className={s.center}>
-          <h5>Original Bu...</h5>
+          <h5>{this.props.title}</h5>
           <div className={s.control}>
             <div onClick={this.onMinus}>
               <span>-</span>
@@ -52,8 +52,8 @@ export default class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-          <span>$558</span>
-          <img className={s.trash} src={trash} alt="..."></img>
+             <span>{this.props.price}</span>
+          <img className={s.trash} src={trash} alt="..." onClick={()=> {this.props.deleteItem()}}></img>
         </div>
       </div>
     );

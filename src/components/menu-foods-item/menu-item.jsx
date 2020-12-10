@@ -6,10 +6,6 @@ import s from './style.module.css';
 
 export default class ItemMenuFoods extends Component{
 
-  constructor(props){
-      super(props);
-  }
-
 
     render(){
 

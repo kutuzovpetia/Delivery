@@ -4,6 +4,8 @@
 }
 
 .item{
+    display: flex;
+    justify-content: space-between;
     width: 350px;
     height: 78px;
     position: relative;
@@ -35,7 +37,6 @@
     color: white;
     font-size: 20px;
     font-weight: 600;
-    /* padding: 0 5px 0 5px; */
     background-color: black;
     border-radius: 10px;
     border: 1px solid rgba(119, 119, 119, 0.465);
@@ -45,7 +46,6 @@
 }
 
 .control div:nth-child(1){
-    /* background-color: brown; */
     width: 30%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -55,7 +55,6 @@
 }
 
 .control div:nth-child(3){
-    /* background-color: brown; */
     width: 30%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;

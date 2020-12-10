@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import s from "./style.module.css";
 import ItemMenuFoods from "../menu-foods-item/menu-item";
 
-
 const data = [
   { menuImg: './image/bell.png', text: 'Все', id: 1},
   { menuImg: './image/burger.png', text: 'Бургер', id: 2},
@@ -12,7 +11,6 @@ const data = [
   { menuImg: './image/meat.png', text: 'Мясо', id: 6},
   {menuImg: './image/fish.png', text: 'Рыба', id: 7},
 ]
-
 
 export default class MenuFoods extends Component {
   render() {
@@ -26,7 +24,7 @@ export default class MenuFoods extends Component {
     });
 
     return (
-        <ul className={`${s.menu} d-flex w-100 justify-content-between`}>
+        <ul className={`${s.menu}`}>
         {elements}
         </ul>
     );
