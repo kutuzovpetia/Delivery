@@ -7,10 +7,10 @@ export default class Order extends Component {
 
   render() {
 
-    const elements = this.props.data.map((item) => {
-      const {id} = item;
+    const {data, deleteItem} = this.props;
+    const elements = data.map((item) => {
       return (
-          <ItemOrder key={parseInt((Math.random() * 100000))} title={item.title} price={item.price} deleteItem={()=> this.props.deleteItem(id)}></ItemOrder>
+          <ItemOrder key={item.id} id={item.id} title={item.title} price={item.price} deleteItem={deleteItem}></ItemOrder>
       );
     });
 

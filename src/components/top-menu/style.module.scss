@@ -1,0 +1,24 @@
+.menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+
+    ul{
+        display: flex;
+        list-style: none;
+        padding: 0;
+        .menuItem{
+            margin-right: 20px;
+            color: white;
+            padding-bottom: 5px;
+        }
+
+        .menuItem:hover{
+            text-decoration: none;
+            padding-bottom: 4px;
+            border-bottom: 1px solid white;
+        }
+
+    }
+}

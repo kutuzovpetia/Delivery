@@ -6,20 +6,14 @@ import basket from "../../image/basket.png";
 
 export default class ItemFood extends Component {
   
-  constructor(props){
-    super(props);
-    this.www = 'Заголовок)!';
-    this.p = '333';
-  }
-
   render() {
-
+    const{id,title,price,addItem} = this.props;
     return (
       <div className={s.container}>
         <div className={s.img}>
             <img src={image} alt="..."></img>
         </div>
-        <h3 className={s.title}>Double-бургер</h3>
+        <h3 className={s.title}>{title}</h3>
 
         <div className={`${s.price}`}>
           <div className={`${s.time}`}>
@@ -34,7 +28,7 @@ export default class ItemFood extends Component {
             <div><span className={`${s.heart} fa fa-heart`}></span></div>
             <span>like</span>
           </div>
-          <img className={s.basket} src={basket} alt="..." onClick={()=>{this.props.addItem(this.www, this.p)}}></img>
+          <img className={s.basket} src={basket} alt="..." onClick={()=>{addItem(id,title,price)}}></img>
         </div>
       </div>
     );

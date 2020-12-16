@@ -5,13 +5,21 @@ import ItemFood from "../item-food/item-food";
 
 export default class Content extends Component {
   render() {
-    const { addItem } = this.props;
+
+    const { addItem, data } = this.props;
+
+    const elements = data.map((item) => {
+      return (
+          <ItemFood key={item.id} id={item.id} addItem={addItem} title={item.title}></ItemFood>
+      );
+    });
+
     return (
       <div className={s.content}>
         <h3 className={s.title}>Сделай свой выбор</h3>
         <MenuFoods></MenuFoods>
         <div className={s.item}>
-          <ItemFood addItem={addItem}></ItemFood>
+          {elements}
         </div>
       </div>
     );

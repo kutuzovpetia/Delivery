@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './style.module.css';
-// import bell from '../../image/bell.png';
 
 
 export default class ItemMenuFoods extends Component{

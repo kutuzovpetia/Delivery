@@ -30,6 +30,7 @@ export default class ItemOrder extends Component {
 
   render() {
 
+    const {title, deleteItem, id} = this.props;
     return (
       <div className={`${s.item}`}>
         <div>
@@ -37,7 +38,7 @@ export default class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-          <h5>{this.props.title}</h5>
+          <h5>{title}</h5>
           <div className={s.control}>
             <div onClick={this.onMinus}>
               <span>-</span>
@@ -53,7 +54,7 @@ export default class ItemOrder extends Component {
 
         <div className={s.center}>
              <span>{this.props.price}</span>
-          <img className={s.trash} src={trash} alt="..." onClick={()=> {this.props.deleteItem()}}></img>
+          <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id)}}></img>
         </div>
       </div>
     );
