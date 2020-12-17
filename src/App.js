@@ -44,7 +44,7 @@ export default class App extends Component {
   }
 
 
-  deleteItem(id){
+  deleteItem(id){    // Функція видалення елемента з корзини
     console.log(id);
     this.setState(({order}) =>{
       const index = order.findIndex(elem => elem.id === id);
@@ -57,12 +57,19 @@ export default class App extends Component {
     })
   }
 
-  addItem(i,t,b) {
-    const newItem = {
-      id: i,
-      title: t,
-      price: b,
-    };
+  addItem(i,t,b) {    // Функція додавання елементу в корзину     
+
+    let check = false;
+    if(i){            // Перевірка корзини, чи є вже елемент
+      this.state.order.map((item) => {
+        if (item.id === i) { check = true; }
+      });
+    }
+    if (check) {
+      return;
+    }
+   
+    const newItem = { id: i, title: t, price: b,};
 
     this.setState(({ order }) => {
       const newArr = [...order, newItem];
@@ -76,26 +83,50 @@ export default class App extends Component {
 
     const {data, order} = this.state;
     return (
+      // <BrowserRouter>
+      //   <div className={"App"}>
+      //     <div className="row">
+      //       <div className="col-8">
+      //         <TopMenu></TopMenu>
+      //         <Header className={s.header}></Header>
+      //         <Route path="/register">
+      //               <Register></Register>
+      //         </Route>
+
+      //         <div className="row">
+      //           <Route path="/Главная">
+      //             <Content addItem={this.addItem} data={data}></Content>
+      //           </Route>
+
+      //         </div>
+      //       </div>
+      //       <div className="col-4">
+      //         <Order data={order} deleteItem={this.deleteItem}></Order>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </BrowserRouter>
+
       <BrowserRouter>
         <div className={"App"}>
-          <div className="row">
-            <div className="col-8">
+          <div className="container">
+            <div className="col-12">
               <TopMenu></TopMenu>
-              <Header></Header>
+              <Header className={s.header}></Header>
               <Route path="/register">
-                    <Register></Register>
+                <Register></Register>
               </Route>
-              
-              <div className="row">
-                <Route path="/Главная">
-                  <Content addItem={this.addItem} data={data}></Content>
-                </Route>
-                
-              </div>
             </div>
-            <div className="col-4">
-              <Order data={order} deleteItem={this.deleteItem}></Order>
-            </div>
+
+            <Route path="/Главная">
+              <Content addItem={this.addItem} data={data}></Content>
+            </Route>
+
+            <Order
+              className="order"
+              data={order}
+              deleteItem={this.deleteItem}
+            ></Order>
           </div>
         </div>
       </BrowserRouter>

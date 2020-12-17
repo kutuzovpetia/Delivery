@@ -1,24 +1,28 @@
-.menu{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-
-
-    ul{
+.menu {
+    background-color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid #1D1D1D;
+    .topI {
         display: flex;
-        list-style: none;
-        padding: 0;
-        .menuItem{
-            margin-right: 20px;
-            color: white;
-            padding-bottom: 5px;
-        }
-
-        .menuItem:hover{
-            text-decoration: none;
-            padding-bottom: 4px;
-            border-bottom: 1px solid white;
-        }
-
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 50%;
     }
+
+    .topI:hover {
+        background-color: #1D1D1D;
+        cursor: pointer;
+    }
+
+    .containerMy {
+        min-width: 72%;
+        max-width: 1200px;
+        position: relative;
+        margin: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
 }
