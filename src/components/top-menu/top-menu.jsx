@@ -6,7 +6,30 @@ import basket from '../../image/basket.png';
 
 
 export default class TopMenu extends Component {
+
+
+constructor(props){
+      super(props);
+
+      this.state = {
+        openNav : false,
+      }
+}
+
+
+
+openNav = () => {
+  const {openNav} = this.state;
+  this.setState({
+    openNav : !openNav
+  });
+
+  const Order = document.getElementById("mySideOrder");
+  openNav ? Order.style.width = "0" : Order.style.width = "380px";
+}
+
   render() {
+
     return (
       // <nav className={s.menu + ' navbar navbar-dark bg-dark'}>
       //   <ul>
@@ -34,9 +57,6 @@ export default class TopMenu extends Component {
       <span className="navbar-toggler-icon"></span>
     </button>
 
-    
-
-
     <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div className="navbar-nav">
         <NavLink to="/Главная" className={'nav-link activ' + s.menuItem}>Главная</NavLink>
@@ -52,7 +72,7 @@ export default class TopMenu extends Component {
                 <img src={heart} alt="..." />
              </div>
              <div className={s.topI}>
-                <img src={basket} alt="..." />
+                <img src={basket} alt="..." onClick={this.openNav}/>
              </div>
           </div>
       </div>

@@ -20,7 +20,7 @@ export default class ItemFood extends Component {
             <img src={clock} alt="..."></img>
             <span>15 мин.</span>
           </div>
-          <p>$34.99</p>
+          <p>{price}</p>
         </div>
 
         <div className={`${s.buy}`}>

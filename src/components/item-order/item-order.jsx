@@ -17,6 +17,8 @@ export default class ItemOrder extends Component {
     this.setState({
       num: res,
     });
+
+    this.props.addPlus(this.props.price);
   }
 
   onMinus() {
@@ -26,11 +28,12 @@ export default class ItemOrder extends Component {
     this.setState({
       num: res,
     });
+
+    this.props.addMinus(this.props.price);
   }
 
   render() {
-
-    const {title, deleteItem, id} = this.props;
+    const {title, deleteItem, id, price} = this.props;
     return (
       <div className={`${s.item}`}>
         <div>
@@ -53,7 +56,7 @@ export default class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-             <span>{this.props.price}</span>
+             <span>{price}</span>
           <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id)}}></img>
         </div>
       </div>
