@@ -9,6 +9,7 @@ import Register from "./components/register";
 import { BrowserRouter, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
+import d from './data';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvDZefVwrGuNQYJ7YaSoDdZvNp2zBFWt4",
@@ -27,16 +28,18 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        { title: "Бургер", price: "1", id: 1 },
-        { title: "Дабл-Бургер", price: "12", id: 2 },
-        { title: "Фиш-Бургер", price: "13", id: 3 },
-        { title: "Чиз-Бургер", price: "120", id: 4 },
-        { title: "WWW", price: "556", id: 5 },
-        { title: "WWW", price: "556", id: 6 },
-        { title: "WWW", price: "556", id: 7 },
-        { title: "WWW", price: "556", id: 8 },
-      ],
+      data: d,
+      
+      // [
+      //   { title: "Бургер", price: "1", id: 1 },
+      //   { title: "Дабл-Бургер", price: "12", id: 2 },
+      //   { title: "Фиш-Бургер", price: "13", id: 3 },
+      //   { title: "Чиз-Бургер", price: "120", id: 4 },
+      //   { title: "WWW", price: "556", id: 5 },
+      //   { title: "WWW", price: "556", id: 6 },
+      //   { title: "WWW", price: "556", id: 7 },
+      //   { title: "WWW", price: "556", id: 8 },
+      // ],
       order: [], // Корзина
       sum: 0,
     };
