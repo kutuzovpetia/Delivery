@@ -10,36 +10,16 @@ import { BrowserRouter, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
 import d from './data';
+import Config from './Config'; // Ключ до бази
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCvDZefVwrGuNQYJ7YaSoDdZvNp2zBFWt4",
-  authDomain: "delivery-5fd13.firebaseapp.com",
-  databaseURL: "https://delivery-5fd13-default-rtdb.firebaseio.com",
-  projectId: "delivery-5fd13",
-  storageBucket: "delivery-5fd13.appspot.com",
-  messagingSenderId: "466120418847",
-  appId: "1:466120418847:web:40f0c0daf289e6fb94972a",
-  measurementId: "G-ZJSVZZZZ6N",
-};
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(Config);
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: d,
-      
-      // [
-      //   { title: "Бургер", price: "1", id: 1 },
-      //   { title: "Дабл-Бургер", price: "12", id: 2 },
-      //   { title: "Фиш-Бургер", price: "13", id: 3 },
-      //   { title: "Чиз-Бургер", price: "120", id: 4 },
-      //   { title: "WWW", price: "556", id: 5 },
-      //   { title: "WWW", price: "556", id: 6 },
-      //   { title: "WWW", price: "556", id: 7 },
-      //   { title: "WWW", price: "556", id: 8 },
-      // ],
       order: [], // Корзина
       sum: 0,
     };
@@ -49,10 +29,12 @@ export default class App extends Component {
     this.addMinus = this.addMinus.bind(this);
   }
 
-  deleteItem(id) {
-    // Функція видалення елемента з корзини
-    const { order } = this.state;
-    // order.lenght === 0 ? console.log('pusto'): console.log('ok');
+  deleteItem(id, minus) {// Функція видалення елемента з корзини
+    const { sum } = this.state;
+    const temp = sum - minus; // Віднімаю від сумми кількість * ціну
+    this.setState({     
+      sum : temp
+    });
 
     this.setState(({ order }) => {
       const index = order.findIndex((elem) => elem.id === id);
@@ -78,6 +60,7 @@ export default class App extends Component {
       });
     }
     if (check) {
+      alert('Уже есть в корзине!');
       return;
     }
 
@@ -111,21 +94,52 @@ export default class App extends Component {
 
   render() {
     const { data, order, sum } = this.state;
+
     return (
       <BrowserRouter>
         <div className={"App"}>
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
+
+              <Route path="/Главная">
               <Header className={s.header}></Header>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
               <Route path="/register">
                 <Register></Register>
               </Route>
-            </div>
 
-            <Route path="/Главная">
+              <Route path="/Все">
+              <Header className={s.header}></Header>
               <Content addItem={this.addItem} data={data}></Content>
-            </Route>
+              </Route>
+
+              <Route path={'/Бургеры'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
+              <Route path={'/Рыба'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
+              <Route path={'/Мясо'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
+              <Route path={'/Паста'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
+              <Route path={'/Пицца'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+
+              <Route path={'/Суши'}>
+              <Content addItem={this.addItem} data={data}></Content>
+              </Route>
+            </div>
 
             <Order
               className="order"

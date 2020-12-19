@@ -10,7 +10,14 @@ $selectCursor : url(../../image/Select.cur), auto;
   }
 
   .img {
+    overflow: hidden;
+    width: 176px;
+    height: 106px;
     border-radius: 10px;
+  }
+
+  .pic{
+    width: 176px;
   }
 
   .price {
@@ -62,5 +69,18 @@ $selectCursor : url(../../image/Select.cur), auto;
     display: flex;
     justify-content: space-between;
   }
+
+  .liked{
+    font-size: 26px;
+    color: red;
+    font-weight: 700;
+    cursor: $selectCursor;
+
+    &.active{
+      color: chartreuse;
+    }
+  }
+
+  
 
 }

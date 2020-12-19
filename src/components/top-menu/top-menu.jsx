@@ -16,8 +16,6 @@ constructor(props){
       }
 }
 
-
-
 openNav = () => {
   const {openNav} = this.state;
   this.setState({
@@ -29,29 +27,10 @@ openNav = () => {
 }
 
   render() {
-
     return (
-      // <nav className={s.menu + ' navbar navbar-dark bg-dark'}>
-      //   <ul>
-      //     <NavLink to="/Главная" className={s.menuItem}>Главная</NavLink>
-      //     <NavLink to="/contact" className={s.menuItem}>Контакты</NavLink>
-      //     <NavLink to="/about" className={s.menuItem}>О нас</NavLink>
-      //   </ul>
 
-      //   <ul>
-      //     <NavLink to="/enter" className={s.menuItem}>Вход</NavLink>
-      //     <NavLink to="/register" className={s.menuItem}>Регистрация</NavLink>
-      //     <div>
-      //       <img src="" alt="..." />
-      //       <img src="" alt="..." />
-      //     </div>
-      //   </ul>
-      // </nav>
-
-      /********************************************************** */
-      
-<nav className={"navbar navbar-expand-lg navbar-dark fixed-top " + s.menu}>
-  <div className={s.containerMy}>
+    <nav className={"navbar navbar-expand-lg navbar-dark fixed-top " + s.menu}>
+    <div className={s.containerMy}>
     {/* <NavLink className="navbar-brand" to="/Главная">Navbar</NavLink> */}
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -59,9 +38,9 @@ openNav = () => {
 
     <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div className="navbar-nav">
-        <NavLink to="/Главная" className={'nav-link activ' + s.menuItem}>Главная</NavLink>
-        <NavLink to="/contact" className={'nav-link ' + s.menuItem}>Контакты</NavLink>
-        <NavLink to="/about" className={'nav-link ' + s.menuItem}>О нас</NavLink>
+        <NavLink to="/Главная" className={'nav-link activ'}>Главная</NavLink>
+        <NavLink to="/contact" className={'nav-link'}>Контакты</NavLink>
+        <NavLink to="/about" className={'nav-link'}>О нас</NavLink>
       </div>
       
       <div className="d-flex navbar-nav align-items-center">

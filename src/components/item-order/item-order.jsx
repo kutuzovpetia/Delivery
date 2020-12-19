@@ -6,27 +6,27 @@ import img from "../../image/f1.png";
 export default class ItemOrder extends Component {
   constructor(props) {
     super(props);
-    this.state = { num: 1 };
+    this.state = { count: 1,};
     this.onPlus = this.onPlus.bind(this);
     this.onMinus = this.onMinus.bind(this);
   }
 
   onPlus() {
-    let res = this.state.num;
+    let res = this.state.count;
     res++;
     this.setState({
-      num: res,
+      count: res,
     });
 
     this.props.addPlus(this.props.price);
   }
 
   onMinus() {
-    let res = this.state.num;
+    let res = this.state.count;
     if(res === 1){return;}
     res--;
     this.setState({
-      num: res,
+      count: res,
     });
 
     this.props.addMinus(this.props.price);
@@ -34,6 +34,9 @@ export default class ItemOrder extends Component {
 
   render() {
     const {title, deleteItem, id, price} = this.props;
+    const{count} = this.state;
+    const sum = count * price;
+
     return (
       <div className={`${s.item}`}>
         <div>
@@ -47,7 +50,7 @@ export default class ItemOrder extends Component {
               <span>-</span>
             </div>
             <div>
-              <span>{this.state.num}</span>
+              <span>{this.state.count}</span>
             </div>
             <div onClick={this.onPlus}>
               <span>+</span>
@@ -57,7 +60,7 @@ export default class ItemOrder extends Component {
 
         <div className={s.center}>
              <span>{price}</span>
-          <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id)}}></img>
+          <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id,sum)}}></img>
         </div>
       </div>
     );
