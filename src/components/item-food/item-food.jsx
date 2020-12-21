@@ -25,13 +25,13 @@ export default class ItemFood extends Component {
  }
 
   render() {
-    const{id,title,price,addItem} = this.props;
+    const{id,title,price,addItem, foodImg} = this.props;
     const {like} = this.state;
     return (
       <div className={s.container}>
         <div className={s.imgWrapper}>
             {/* <img src={image} alt="..."></img> */}
-            <img className={s.img} src="https://www.meme-arsenal.com/memes/50569ac974c29121ff9075e45a334942.jpg" alt="..."></img>
+            <img className={s.img} src={foodImg} alt="..."></img>
         </div>
         <h3 className={s.title}>{title}</h3>
 
@@ -48,7 +48,7 @@ export default class ItemFood extends Component {
             <div onClick={this.onLike}><span className={like ? `${s.liked} fa fa-heart` : `${s.heart} fa fa-heart` }></span></div>
             <span>like</span>
           </div>
-          <img className={s.basket} src={basket} alt="..." onClick={()=>{addItem(id,title,price)}}></img>
+          <img className={s.basket} src={basket} alt="..." onClick={()=>{addItem(id,title,price,foodImg)}}></img>
         </div>
       </div>
     );

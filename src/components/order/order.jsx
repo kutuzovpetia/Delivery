@@ -11,15 +11,29 @@ export default class Order extends Component {
     const {data, deleteItem, sum, addPlus, addMinus} = this.props;
     const elements = data.map((item) => {
       return (
-          <ItemOrder key={item.id} id={item.id} title={item.title} price={item.price} deleteItem={deleteItem} addPlus={addPlus} addMinus={addMinus}></ItemOrder>
+          <ItemOrder 
+          key={item.id} 
+          id={item.id} 
+          title={item.title} 
+          price={item.price} 
+          deleteItem={deleteItem} 
+          addPlus={addPlus} 
+          addMinus={addMinus}
+          foodImg={item.img}
+          >
+          </ItemOrder>
       );
     });
 
     return(
      <div id="mySideOrder" className={s.sideOrder}>
-         <h2 className={s.title}>Мой заказ</h2>
+         <h2 className={s.title}>Корзина</h2>
          {elements}
-         <Total total={sum}></Total>
+
+         <div className={s.total}>
+         <Total  total={sum}></Total>
+         </div>
+
       </div>
     );
   }

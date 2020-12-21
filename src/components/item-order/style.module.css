@@ -1,5 +1,5 @@
 .image{
-    width: 120px;
+    /* width: 120px; */
     height: 71px;
 }
 
@@ -10,7 +10,6 @@
     height: 78px;
     position: relative;
     margin-bottom: 30px;
-    margin-left: 20px;
 }
 
 .center{

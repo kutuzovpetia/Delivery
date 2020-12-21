@@ -9,7 +9,7 @@ import Register from "./components/register";
 import { BrowserRouter, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
-import d from './data';
+import Data from './data';
 import Config from './Config'; // Ключ до бази
 
 
@@ -19,7 +19,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: d,
+      data: {},
       order: [], // Корзина
       sum: 0,
     };
@@ -28,7 +28,18 @@ export default class App extends Component {
     this.addPlus = this.addPlus.bind(this);
     this.addMinus = this.addMinus.bind(this);
   }
+/*****************************************************************/ 
+  componentDidMount(){
+    const db = firebase.database();
+    const name = db.ref('Burgers');
+    name.on('value', (elem)=>{
+      this.setState({
+        data : elem.val()
+      });
+    });
+  }
 
+/*****************************************************************/ 
   deleteItem(id, minus) {// Функція видалення елемента з корзини
     const { sum } = this.state;
     const temp = sum - minus; // Віднімаю від сумми кількість * ціну
@@ -47,7 +58,7 @@ export default class App extends Component {
     });
   }
 
-  addItem(i, t, b) {
+  addItem(i, t, b, img) {
     // Функція додавання елементу в корзину
     let check = false; // тимчасова для перевірки
 
@@ -64,7 +75,7 @@ export default class App extends Component {
       return;
     }
 
-    const newItem = { id: i, title: t, price: b }; // новий об’экт
+    const newItem = { id: i, title: t, price: b, img: img, }; // новий об’экт
     this.setState(({ order }) => {
       const newArr = [...order, newItem];
       return {
@@ -94,6 +105,10 @@ export default class App extends Component {
 
   render() {
     const { data, order, sum } = this.state;
+    const Data = [];
+    Object.keys(data).forEach(elem => {
+       Data.push(data[elem]);
+    });
 
     return (
       <BrowserRouter>
@@ -102,9 +117,9 @@ export default class App extends Component {
             <div className="col-12">
               <TopMenu></TopMenu>
 
-              <Route path="/главная">
+              <Route path="/Главная">
               <Header className={s.header}></Header>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path="/register">
@@ -125,31 +140,31 @@ export default class App extends Component {
 
               <Route path="/Все">
               <Header className={s.header}></Header>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Бургеры'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Рыба'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Мясо'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Паста'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Пицца'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Суши'}>
-              <Content addItem={this.addItem} data={data}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
             </div>
 

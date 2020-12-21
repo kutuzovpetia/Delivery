@@ -33,14 +33,14 @@ export default class ItemOrder extends Component {
   }
 
   render() {
-    const {title, deleteItem, id, price} = this.props;
+    const {title, deleteItem, id, price, foodImg} = this.props;
     const{count} = this.state;
     const sum = count * price;
 
     return (
       <div className={`${s.item}`}>
         <div>
-          <img className={s.image} src={img} alt="..."></img>
+          <img className={s.image} src={foodImg} alt="..."></img>
         </div>
 
         <div className={s.center}>
@@ -59,7 +59,7 @@ export default class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-             <span>{price}</span>
+             <span>{price} грн</span>
           <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id,sum)}}></img>
         </div>
       </div>

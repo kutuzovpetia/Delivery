@@ -10,7 +10,7 @@ export default class Content extends Component {
 
     const elements = data.map((item) => {
       return (
-          <ItemFood key={item.id} id={item.id} addItem={addItem} title={item.title} price={item.price}></ItemFood>
+          <ItemFood key={item.id} id={item.id} addItem={addItem} foodImg={item.img} title={item.title} price={item.price}></ItemFood>
       );
     });
 

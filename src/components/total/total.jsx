@@ -11,7 +11,7 @@ export default class Total extends Component{
         <div className={s.wrapper}>
            <div className={s.total}>
                 <span>Всего:</span>
-                <span>{total}</span>
+                <span>{total} грн</span>
            </div>
 
           <p className={s.subTitle}>Бесплатная доставка при сумме от 250 грн</p>
