@@ -14,9 +14,9 @@ export default class Total extends Component{
                 <span>{total}</span>
            </div>
 
-          <p>Бесплатная доставка при сумме от 250 грн</p>
+          <p className={s.subTitle}>Бесплатная доставка при сумме от 250 грн</p>
           
-        <button type="button" className={"btn btn-dark btnOrder"}>Оформить заказ</button>
+        <button type="button" className={`btn btn-dark ${s.btnOrder}`}>Оформить заказ</button>
 
         </div>
 
