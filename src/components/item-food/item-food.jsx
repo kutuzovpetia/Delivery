@@ -29,9 +29,9 @@ export default class ItemFood extends Component {
     const {like} = this.state;
     return (
       <div className={s.container}>
-        <div className={s.img}>
+        <div className={s.imgWrapper}>
             {/* <img src={image} alt="..."></img> */}
-            <img className={s.img} src="https://avatarko.ru/img/kartinka/33/multfilm_lyagushka_32117.jpg" alt="..."></img>
+            <img className={s.img} src="https://www.meme-arsenal.com/memes/50569ac974c29121ff9075e45a334942.jpg" alt="..."></img>
         </div>
         <h3 className={s.title}>{title}</h3>
 

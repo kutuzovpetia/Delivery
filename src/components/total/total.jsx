@@ -16,7 +16,7 @@ export default class Total extends Component{
 
           <p>Бесплатная доставка при сумме от 250 грн</p>
           
-        <button type="button" className={"btn btn-dark w-50"}>Оформить заказ</button>
+        <button type="button" className={"btn btn-dark btnOrder"}>Оформить заказ</button>
 
         </div>
 

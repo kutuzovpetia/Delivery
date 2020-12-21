@@ -102,13 +102,25 @@ export default class App extends Component {
             <div className="col-12">
               <TopMenu></TopMenu>
 
-              <Route path="/Главная">
+              <Route path="/главная">
               <Header className={s.header}></Header>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
               <Route path="/register">
-                <Register></Register>
+                <Register
+                type={"reg"}
+                title={"Регистрация"}
+                btnLabel={"Подтвердить"}
+                />
+              </Route>
+
+              <Route path="/enter">
+                <Register
+                type={"enter"}
+                title={"Вход"}
+                btnLabel={"Войти"}
+                />
               </Route>
 
               <Route path="/Все">

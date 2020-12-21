@@ -9,10 +9,16 @@ $selectCursor : url(../../image/Select.cur), auto;
     margin: 5px 0 10px 0;
   }
 
+ .imgWrapper{
+   display: flex;
+   justify-content: center;
+   width: 176px;
+   height: 110px;
+ }
+
   .img {
     overflow: hidden;
-    width: 176px;
-    height: 106px;
+    height: 100%;
     border-radius: 10px;
   }
 
