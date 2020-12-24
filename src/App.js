@@ -6,10 +6,10 @@ import Order from "./components/order";
 import Content from "./components/content";
 import TopMenu from "./components/top-menu";
 import Register from "./components/register";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
-import Data from './data';
+import Contact from './components/contact';
 import Config from './Config'; // Ключ до бази
 
 
@@ -58,22 +58,13 @@ export default class App extends Component {
     });
   }
 
-  addItem(i, t, b, img) {
+  addItem(i, t, b, img) { //id, title, price, img
     // Функція додавання елементу в корзину
     let check = false; // тимчасова для перевірки
-
-    if (i) {
-      // Перевірка корзини, чи є вже елемент
-      this.state.order.map((item) => {
-        if (item.id === i) {
-          check = true;
-        }
-      });
-    }
-    if (check) {
-      alert('Уже есть в корзине!');
-      return;
-    }
+    this.state.order.forEach(el=> {
+      if (el.id === i) { check = true;}
+    });
+    if (check) { alert('Уже есть в корзине!'); return; }
 
     const newItem = { id: i, title: t, price: b, img: img, }; // новий об’экт
     this.setState(({ order }) => {
@@ -116,10 +107,19 @@ export default class App extends Component {
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
+              <Redirect from="/" to="home"></Redirect> {/* Стартуем! */}
 
-              <Route path="/Главная">
+              <Route path="/home">
               <Header className={s.header}></Header>
               <Content addItem={this.addItem} data={Data}></Content>
+              </Route>
+
+              <Route path="/about">
+
+              </Route>
+
+              <Route path="/contact">
+                   <Contact></Contact>
               </Route>
 
               <Route path="/register">

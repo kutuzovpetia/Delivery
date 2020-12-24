@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import s from "./style.module.scss";
-import image from "../../image/f1.png";
 import clock from "../../image/clock.png";
 import basket from "../../image/basket.png";
 
@@ -30,7 +29,6 @@ export default class ItemFood extends Component {
     return (
       <div className={s.container}>
         <div className={s.imgWrapper}>
-            {/* <img src={image} alt="..."></img> */}
             <img className={s.img} src={foodImg} alt="..."></img>
         </div>
         <h3 className={s.title}>{title}</h3>

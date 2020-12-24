@@ -39,9 +39,9 @@ openNav = () => {
 
     <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div className="navbar-nav">
-        <NavLink to="/главная" className={'nav-link'}>Главная</NavLink>
-        <NavLink to="/contact" className={'nav-link'}>Контакты</NavLink>
-        <NavLink to="/about" className={'nav-link'}>О нас</NavLink>
+        <NavLink to="home" className={'nav-link'}>Главная</NavLink>
+        <NavLink to="contact" className={'nav-link'}>Контакты</NavLink>
+        <NavLink to="about" className={'nav-link'}>О нас</NavLink>
       </div>
       
       <div className="d-flex navbar-nav align-items-center">
