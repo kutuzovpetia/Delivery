@@ -43,9 +43,9 @@ export default class App extends Component {
   deleteItem(id, minus) {// Функція видалення елемента з корзини
     const { sum, order } = this.state;
     const temp = sum - minus; // Віднімаю від сумми кількість * ціну
-    this.setState({     
-      sum : temp
-    });
+    // this.setState({     
+    //   sum : temp
+    // });
 
     // this.setState(({ order }) => {
     //   const index = order.findIndex((elem) => elem.id === id);
@@ -56,10 +56,11 @@ export default class App extends Component {
     //     order: newArr,
     //   };
     // });
-    
+
     const newOrder = order.filter(elem => elem.id !== id)
     this.setState({
-       order: newOrder
+       order: newOrder,
+       sum : temp
     })
   }
 
