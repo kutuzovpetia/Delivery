@@ -36,6 +36,8 @@ openNav = () => {
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
+    
+    <img className='navbar-toggler' src={basket} alt="..." onClick={this.openNav}/>
 
     <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
       <div className="navbar-nav">
@@ -51,7 +53,7 @@ openNav = () => {
              <div className={s.topI}>
                 <img src={heart} alt="..." />
              </div>
-             <div className={s.topI}>
+             <div className={`${s.topI}`}>
                 <img src={basket} alt="..." onClick={this.openNav}/>
              </div>
           </div>

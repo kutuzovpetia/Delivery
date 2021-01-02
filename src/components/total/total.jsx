@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import s from './style.module.scss';
+import * as actions from '../../action/action';
+import {connect} from 'react-redux';
 
-
-export default class Total extends Component{
+class Total extends Component{
 
     render(){
 
@@ -23,3 +24,12 @@ export default class Total extends Component{
         )
     }
 }
+
+const mapStateToProps = (state) => {
+ 
+    return{
+        total: state.total,
+    }
+}
+  
+export default connect(mapStateToProps, actions)(Total);

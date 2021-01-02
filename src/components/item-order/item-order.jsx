@@ -2,41 +2,67 @@ import React, { Component } from "react";
 import s from "./style.module.css";
 import trash from "../../image/trash.png";
 import img from "../../image/f1.png";
+import * as actions from '../../action/action';
+import {connect} from 'react-redux';
 
-export default class ItemOrder extends Component {
+class ItemOrder extends Component {
   constructor(props) {
     super(props);
     this.state = { count: 1,};
     this.onPlus = this.onPlus.bind(this);
     this.onMinus = this.onMinus.bind(this);
+    this.addPlus = this.addPlus.bind(this);
+    this.addMinus = this.addMinus.bind(this);
   }
+
+  addPlus() {
+    const { total, totalUpdate, price } = this.props;
+    const s = total + parseFloat(price);
+    totalUpdate(s);
+  }
+
+  addMinus() {
+    const { total, totalUpdate, price } = this.props;
+    const s = total - parseFloat(price);
+    totalUpdate(s);
+  }
+
+  // onPlus() {
+  //  const{Pluse, id}= this.props;
+  //  let {count} = this.props;
+  //  Pluse(id,++count);
+  //  this.addPlus();
+  // }
+
+  // onMinus() {
+  //   const{Minus, id} = this.props;
+  //   let {count} = this.props;
+  //   if(count === 1){return;}
+  //   Minus(id,--count);
+  //   this.addMinus();
+  // }
 
   onPlus() {
-    let res = this.state.count;
-    res++;
+    let {count} = this.state;
     this.setState({
-      count: res,
-    });
-
-    this.props.addPlus(this.props.price);
+      count: ++count
+    })
+    this.addPlus();
   }
-
+  
   onMinus() {
-    let res = this.state.count;
-    if(res === 1){return;}
-    res--;
+    let {count} = this.state;
+    if(count === 1){return;}
     this.setState({
-      count: res,
-    });
-
-    this.props.addMinus(this.props.price);
+      count: --count
+    })
+    this.addMinus();
   }
 
   render() {
     const {title, deleteItem, id, price, foodImg} = this.props;
     const{count} = this.state;
     const sum = count * price;
-
     return (
       <div className={`${s.item}`}>
         <div>
@@ -50,7 +76,7 @@ export default class ItemOrder extends Component {
               <span>-</span>
             </div>
             <div>
-              <span>{this.state.count}</span>
+              <span>{count}</span>
             </div>
             <div onClick={this.onPlus}>
               <span>+</span>
@@ -66,3 +92,13 @@ export default class ItemOrder extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+ 
+  return{
+       total: state.total,
+       order: state.order,
+  }
+}
+
+export default connect(mapStateToProps, actions)(ItemOrder);

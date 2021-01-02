@@ -24,7 +24,7 @@ export default class ItemFood extends Component {
  }
 
   render() {
-    const{id,title,price,addItem, foodImg} = this.props;
+    const{id,title,price,getItem, foodImg} = this.props;
     const {like} = this.state;
     return (
       <div className={s.container}>
@@ -46,7 +46,7 @@ export default class ItemFood extends Component {
             <div onClick={this.onLike}><span className={like ? `${s.liked} fa fa-heart` : `${s.heart} fa fa-heart` }></span></div>
             <span>like</span>
           </div>
-          <img className={s.basket} src={basket} alt="..." onClick={()=>{addItem(id,title,price,foodImg)}}></img>
+          <img className={s.basket} src={basket} alt="..." onClick={()=>{getItem(id,title,price,foodImg)}}></img>
         </div>
       </div>
     );

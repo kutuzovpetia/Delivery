@@ -10,10 +10,10 @@ import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
 import Contact from './components/contact';
-import Config from './Config'; // Ключ до бази
+// import Config from './Config'; // Ключ до бази
 
 
-firebase.initializeApp(Config);
+// firebase.initializeApp(Config);
 
 export default class App extends Component {
   constructor(props) {
@@ -23,11 +23,8 @@ export default class App extends Component {
       order: [], // Корзина
       sum: 0,
     };
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.addPlus = this.addPlus.bind(this);
-    this.addMinus = this.addMinus.bind(this);
   }
+
 /*****************************************************************/ 
   componentDidMount(){
     const db = firebase.database();
@@ -40,65 +37,6 @@ export default class App extends Component {
   }
 
 /*****************************************************************/ 
-  deleteItem(id, minus) {// Функція видалення елемента з корзини
-    const { sum, order } = this.state;
-    const temp = sum - minus; // Віднімаю від сумми кількість * ціну
-    // this.setState({     
-    //   sum : temp
-    // });
-
-    // this.setState(({ order }) => {
-    //   const index = order.findIndex((elem) => elem.id === id);
-    //   const before = order.slice(0, index);
-    //   const after = order.slice(index + 1);
-    //   const newArr = [...before, ...after];
-    //   return {
-    //     order: newArr,
-    //   };
-    // });
-
-    const newOrder = order.filter(elem => elem.id !== id)
-    this.setState({
-       order: newOrder,
-       sum : temp
-    })
-  }
-
-  addItem(i, t, b, img) { //id, title, price, img
-    // Функція додавання елементу в корзину
-    let check = false; // тимчасова для перевірки
-    this.state.order.forEach(el=> {
-      if (el.id === i) { check = true;}
-    });
-    if (check) { alert('Уже есть в корзине!'); return; }
-
-    const newItem = { id: i, title: t, price: b, img: img, }; // новий об’экт
-    this.setState(({ order }) => {
-      const newArr = [...order, newItem];
-      return {
-        order: newArr,
-      };
-    });
-
-    const s = this.state.sum + parseFloat(b); // Додаєм ціни
-    this.setState({
-      sum: s,
-    });
-  }
-
-  addPlus(data) {
-    const s = this.state.sum + parseFloat(data);
-    this.setState({
-      sum: s,
-    });
-  }
-
-  addMinus(data) {
-    const s = this.state.sum - parseFloat(data);
-    this.setState({
-      sum: s,
-    });
-  }
 
   render() {
     const { data, order, sum } = this.state;
@@ -116,8 +54,9 @@ export default class App extends Component {
               <Redirect from="/" to="home"></Redirect> {/* Стартуем! */}
 
               <Route path="/home">
-              <Header className={s.header}></Header>
-              <Content addItem={this.addItem} data={Data}></Content>
+              <Header className={s.header}>
+              </Header>
+              <Content></Content>
               </Route>
 
               <Route path="/about">
@@ -154,7 +93,7 @@ export default class App extends Component {
               </Route>
 
               <Route path={'/Рыба'}>
-              <Content addItem={this.addItem} data={Data}></Content>
+              <Content addItem={this.addItem}></Content>
               </Route>
 
               <Route path={'/Мясо'}>
