@@ -50,7 +50,7 @@ class Content extends Component {
 const mapStateToProps = (state) => {
  
   return{
-       data: state.data,
+      //  data: state.data,
        order: state.order,
        total: state.total,
   }

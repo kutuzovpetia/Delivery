@@ -1,22 +1,6 @@
 
-
 const initialState = {
-    data : [
-        {
-            img:
-              "https://firebasestorage.googleapis.com/v0/b/delivery-5fd13.appspot.com/o/burgers%2F%D0%90%D0%BC%D0%B0%D0%B4%D0%B5%D0%B9.png?alt=media&token=108b20e9-76de-4883-bed3-110bbc603975",
-            title: "Амадей",
-            price: "145",
-            id: 1,
-          },
-          {
-            img:
-              "https://firebasestorage.googleapis.com/v0/b/delivery-5fd13.appspot.com/o/burgers%2F%D0%91%D0%BE%D0%BD%D0%B0%D0%BF%D0%B0%D1%80%D1%82.png?alt=media&token=34460a7f-e2a7-48a3-a215-ed802229bb73",
-            title: "Бонапарт",
-            price: "174",
-            id: 2,
-          },
-    ],
+
     order: [],
     total: 0,
     carouselItem : [

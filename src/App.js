@@ -6,14 +6,11 @@ import Order from "./components/order";
 import Content from "./components/content";
 import TopMenu from "./components/top-menu";
 import Register from "./components/register";
+import MenuFoods from "./components/menu-foods";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
 import Contact from './components/contact';
-// import Config from './Config'; // Ключ до бази
-
-
-// firebase.initializeApp(Config);
 
 export default class App extends Component {
   constructor(props) {
@@ -26,16 +23,16 @@ export default class App extends Component {
   }
 
 /*****************************************************************/ 
-  componentDidMount(){
+ componentDidMount(){
     const db = firebase.database();
     const name = db.ref('Burgers');
     name.on('value', (elem)=>{
+      console.log(elem.val())
       this.setState({
         data : elem.val()
       });
     });
   }
-
 /*****************************************************************/ 
 
   render() {
@@ -54,9 +51,8 @@ export default class App extends Component {
               <Redirect from="/" to="home"></Redirect> {/* Стартуем! */}
 
               <Route path="/home">
-              <Header className={s.header}>
-              </Header>
-              <Content></Content>
+              <Header className={s.header}/>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path="/about">
@@ -89,11 +85,12 @@ export default class App extends Component {
               </Route>
 
               <Route path={'/Бургеры'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Рыба'}>
-              <Content addItem={this.addItem}></Content>
+              <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
               <Route path={'/Мясо'}>
@@ -109,7 +106,8 @@ export default class App extends Component {
               </Route>
 
               <Route path={'/Суши'}>
-              <Content addItem={this.addItem} data={Data}></Content>
+              <MenuFoods></MenuFoods>
+              {/* <Content addItem={this.addItem} data={Data}></Content> */}
               </Route>
             </div>
 

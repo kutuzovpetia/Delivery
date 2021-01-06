@@ -70,7 +70,7 @@ class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-          <h5>{title}</h5>
+          <h5>{title.length > 12 ? title.slice(0, 6) + ' ...' : title }</h5>
           <div className={s.control}>
             <div onClick={this.onMinus}>
               <span>-</span>
