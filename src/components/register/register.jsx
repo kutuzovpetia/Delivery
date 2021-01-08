@@ -31,11 +31,11 @@ export default class Register extends Component {
       } catch (error) {
         alert(error.message);
       }
+
+      
     }
     else if(type === 'enter'){
-      await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, pass)
+      await firebase.auth().signInWithEmailAndPassword(email, pass)
       .then((response) => {
          this.setState({ hasAccount: true });
          alert('Успешно вошли в систему');

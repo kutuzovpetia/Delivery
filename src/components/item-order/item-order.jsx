@@ -85,7 +85,7 @@ class ItemOrder extends Component {
         </div>
 
         <div className={s.center}>
-             <span>{price} грн</span>
+             <span>{price} &#8372;</span>
           <img className={s.trash} src={trash} alt="..." onClick={()=> {deleteItem(id,sum)}}></img>
         </div>
       </div>

@@ -27,7 +27,6 @@ export default class App extends Component {
     const db = firebase.database();
     const name = db.ref('Burgers');
     name.on('value', (elem)=>{
-      console.log(elem.val())
       this.setState({
         data : elem.val()
       });
@@ -48,7 +47,7 @@ export default class App extends Component {
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
-              <Redirect from="/" to="home"></Redirect> {/* Стартуем! */}
+              <Redirect from="/" to="Бургеры"></Redirect> {/* Стартуем! */}
 
               <Route path="/home">
               <Header className={s.header}/>

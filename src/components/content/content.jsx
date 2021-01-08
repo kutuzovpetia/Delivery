@@ -31,13 +31,22 @@ class Content extends Component {
     const { data } = this.props;
     const elements = data.map((item) => {
       return (
-          <ItemFood key={item.id} id={item.id} getItem={this.getItem} foodImg={item.img} title={item.title} price={item.price}></ItemFood>
+          <ItemFood 
+          key={item.id} 
+          id={item.id} 
+          getItem={this.getItem} 
+          foodImg={item.img} 
+          title={item.title} 
+          price={item.price}
+          desc={item.desc}
+          >
+          </ItemFood>
       );
     });
 
     return (
       <div className={s.content}>
-        <h3 className={s.title}>Сделай свой выбор</h3>
+        <h3 className={`${s.title} ml-3 my-3`}>Сделай свой выбор</h3>
         <MenuFoods></MenuFoods>
         <div className={s.item}>
           {elements}
@@ -50,7 +59,6 @@ class Content extends Component {
 const mapStateToProps = (state) => {
  
   return{
-      //  data: state.data,
        order: state.order,
        total: state.total,
   }

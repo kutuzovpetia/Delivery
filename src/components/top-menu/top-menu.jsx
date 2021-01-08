@@ -89,7 +89,6 @@ class TopMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.order.length);
   return{
       order: state.order
   }

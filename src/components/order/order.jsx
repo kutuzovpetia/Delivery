@@ -23,7 +23,6 @@ class Order extends Component {
   render() {
 
     const {order} = this.props;
-
     const elements = order.map((item) => {
       return (
           <ItemOrder 
@@ -42,8 +41,9 @@ class Order extends Component {
     return(
      <div id="mySideOrder" className={s.sideOrder}>
          <h2 className={s.title}>Корзина</h2>
-         {elements}
-
+         <div className={s.wrapper}>
+            {elements}
+         </div>
          <div className={s.total}>
              <Total></Total>
          </div>

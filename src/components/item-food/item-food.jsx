@@ -4,49 +4,46 @@ import clock from "../../image/clock.png";
 import basket from "../../image/basket.png";
 
 export default class ItemFood extends Component {
-  
- constructor(){
-   super();
 
-   this.state = {
-     like : false,
-   }
+  constructor() {
+    super();
 
-   this.onLike = this.onLike.bind(this);
- }
+    this.state = {
+      like: false,
+    }
+
+    this.onLike = this.onLike.bind(this);
+  }
 
 
- onLike(){
-   const {like} = this.state;
-   this.setState({
-     like : !like
-   })
- }
+  onLike() {
+    const { like } = this.state;
+    this.setState({
+      like: !like
+    })
+  }
 
   render() {
-    const{id,title,price,getItem, foodImg} = this.props;
-    const {like} = this.state;
+    const { id, title, price, getItem, foodImg, desc } = this.props;
+    const { like } = this.state;
     return (
+
       <div className={s.container}>
         <div className={s.imgWrapper}>
-            <img className={s.img} src={foodImg} alt="..."></img>
+          <img className={s.img} src={foodImg} alt="..."></img>
         </div>
         <h3 className={s.title}>{title}</h3>
 
-        <div className={`${s.price}`}>
-          <div className={`${s.time}`}>
-            <img src={clock} alt="..."></img>
-            <span>15 мин.</span>
-          </div>
-          <p>{price}</p>
+        <div className={s.description}>
+           {/* <p>Помидор / Карамелизованый лук / Маринованый огурец / Три соуса / Салат / 315 г.</p> */}
+           <p>{desc}</p>
         </div>
 
-        <div className={`${s.buy}`}>
-          <div className={`${s.like}`}>
-            <div onClick={this.onLike}><span className={like ? `${s.liked} fa fa-heart` : `${s.heart} fa fa-heart` }></span></div>
-            <span>like</span>
-          </div>
-          <img className={s.basket} src={basket} alt="..." onClick={()=>{getItem(id,title,price,foodImg)}}></img>
+        <div className={`${s.buy}`} onClick={() => { getItem(id, title, price, foodImg) }}>
+          <p>{price} &#8372;</p>
+          {/* <img className={s.basket} src={basket} alt="..." onClick={() => { getItem(id, title, price, foodImg) }}></img> */}
+          
+          <span>Добавить к заказу</span>
         </div>
       </div>
     );

@@ -1,20 +1,23 @@
-$selectCursor : url(../../image/Select.cur), auto;
+$selectCursor : url(../../image/Select.cur),
+auto;
 
 .container {
-  width: 177px;
+  width: 354px;
   margin-bottom: 30px;
+
   .title {
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: 600;
     color: #128fae;
     margin: 5px 0 10px 0;
   }
 
- .imgWrapper{
-   display: flex;
-   justify-content: center;
-   width: 176px;
-   height: 110px;
- }
+  .imgWrapper {
+    display: flex;
+    justify-content: center;
+    width: 354px;
+    height: 170px;
+  }
 
   .img {
     overflow: hidden;
@@ -22,30 +25,36 @@ $selectCursor : url(../../image/Select.cur), auto;
     border-radius: 10px;
   }
 
-  .pic{
-    width: 176px;
+
+  /*Забираю прокрутку*/
+  .description::-webkit-scrollbar {
+    width: 0;
   }
 
-  .price {
-    display: flex;
-    justify-content: space-between;
-    height: 20px;
-    margin-bottom: 15px;
+  .description {
+    -ms-overflow-style: none;
   }
 
-  .time {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90px;
+  .description {
+    overflow: -moz-scrollbars-none;
   }
 
-  .like {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 60px;
+  /******************/
+
+  .description {
+    margin: 15px 0;
+    height: 84px;
+    overflow: scroll;
+
+    p {
+      border-left: 3px solid #FFDB2B;
+      padding-left: 16px;
+    }
+
   }
+
+
+
 
   .basket {
     padding: 5px;
@@ -59,34 +68,37 @@ $selectCursor : url(../../image/Select.cur), auto;
     cursor: $selectCursor;
   }
 
-  .heart {
-    font-size: 26px;
-    font-weight: 200;
-  }
-
-  .heart:hover {
-    color: red;
-    font-weight: 700;
-    transition: color .3s ease;
-    cursor: $selectCursor;
-  }
-
   .buy {
+    padding: 2px;
+    border-radius: 5px;
+    background-color: #FFDB2B;
     display: flex;
     justify-content: space-between;
-  }
+    color: black;
+    align-items: center;
 
-  .liked{
-    font-size: 26px;
-    color: red;
-    font-weight: 700;
-    cursor: $selectCursor;
+    p {
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      padding: 10px 15px;
+      background-color: black;
+      color: white;
+    }
 
-    &.active{
-      color: chartreuse;
+    span {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+      padding: 15px;
+      color: wblack;
+      text-transform: uppercase;
     }
   }
 
-  
+  .buy:hover{
+    cursor: $selectCursor;
+  }
 
 }
