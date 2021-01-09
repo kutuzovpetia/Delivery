@@ -41,6 +41,7 @@ class Order extends Component {
     return(
      <div id="mySideOrder" className={s.sideOrder}>
          <h2 className={s.title}>Корзина</h2>
+
          <div className={s.wrapper}>
             {elements}
          </div>

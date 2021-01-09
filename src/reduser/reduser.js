@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) =>{
         case 'DATA':
           return  state.data
         case 'ADD_ITEM_TO_ORDER':
-          return  {...state, order:[...state.order, action.value]}
+          return  {...state, order:[...state.order, action.value].reverse()}
         case 'TOTAL_UPDATE':
           return  { ...state, total: action.value }
         case 'DELETE_ITEM_FROM_ORDER':

@@ -72,13 +72,11 @@ class TopMenu extends Component {
               <NavLink to="/register" className={"nav-link activ" + s.menuItem}>
                 Регистрация
               </NavLink>
-              <div className="d-flex">
-                <div className={s.topI}>
-                  <img src={heart} alt="..." />
-                </div>
-                <div className={s.topI}>
+              <div className="d-flex align-items-center">
+                <div className={`${s.topI}`}>
                   <img src={this.props.order.length === 0 ? basket : basket_} alt="..." onClick={this.openNav} />
                 </div>
+                <span> {this.props.total} &#8372;</span>
               </div>
             </div>
           </div>
@@ -90,7 +88,8 @@ class TopMenu extends Component {
 
 const mapStateToProps = (state) => {
   return{
-      order: state.order
+      order: state.order,
+      total: state.total,
   }
 }
 

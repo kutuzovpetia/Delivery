@@ -1,5 +1,4 @@
-$selectCursor : url(../../image/Select.cur),
-auto;
+$selectCursor: url(../../image/Select.cur), auto;
 
 .container {
   width: 354px;
@@ -25,7 +24,6 @@ auto;
     border-radius: 10px;
   }
 
-
   /*Забираю прокрутку*/
   .description::-webkit-scrollbar {
     width: 0;
@@ -47,14 +45,10 @@ auto;
     overflow: scroll;
 
     p {
-      border-left: 3px solid #FFDB2B;
+      border-left: 3px solid #ffdb2b;
       padding-left: 16px;
     }
-
   }
-
-
-
 
   .basket {
     padding: 5px;
@@ -62,8 +56,8 @@ auto;
 
   .basket:hover {
     cursor: pointer;
-    background-color: #F55A00;
-    transition: all .3s ease;
+    background-color: #f55a00;
+    transition: all 0.3s ease;
     border-radius: 10px;
     cursor: $selectCursor;
   }
@@ -71,11 +65,16 @@ auto;
   .buy {
     padding: 2px;
     border-radius: 5px;
-    background-color: #FFDB2B;
+    background-color: #ffdb2b;
     display: flex;
     justify-content: space-between;
     color: black;
     align-items: center;
+
+    &:hover {
+      background-color: #25A84C;
+      transition: all .3s ease;
+    }
 
     p {
       border-radius: 5px;
@@ -97,8 +96,7 @@ auto;
     }
   }
 
-  .buy:hover{
+  .buy:hover {
     cursor: $selectCursor;
   }
-
 }

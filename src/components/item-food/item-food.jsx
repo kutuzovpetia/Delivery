@@ -35,14 +35,11 @@ export default class ItemFood extends Component {
         <h3 className={s.title}>{title}</h3>
 
         <div className={s.description}>
-           {/* <p>Помидор / Карамелизованый лук / Маринованый огурец / Три соуса / Салат / 315 г.</p> */}
            <p>{desc}</p>
         </div>
 
         <div className={`${s.buy}`} onClick={() => { getItem(id, title, price, foodImg) }}>
           <p>{price} &#8372;</p>
-          {/* <img className={s.basket} src={basket} alt="..." onClick={() => { getItem(id, title, price, foodImg) }}></img> */}
-          
           <span>Добавить к заказу</span>
         </div>
       </div>
