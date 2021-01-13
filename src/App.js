@@ -11,6 +11,7 @@ import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/database";
 import Contact from './components/contact';
+import Ordering from './components/ordering';
 
 export default class App extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class App extends Component {
     const name = db.ref('Burgers');
     name.on('value', (elem)=>{
       this.setState({
-        data : elem.val()
+        data : elem.val(),
       });
     });
   }
@@ -47,11 +48,16 @@ export default class App extends Component {
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
-              <Redirect from="/" to="Бургеры"></Redirect> {/* Стартуем! */}
+
+              <Redirect from="/" to="Бургеры"></Redirect> {/*Start!*/}
 
               <Route path="/home">
               <Header className={s.header}/>
               <Content addItem={this.addItem} data={Data}></Content>
+              </Route>
+
+              <Route path="/about">
+              <Ordering></Ordering>
               </Route>
 
               <Route path="/about">
@@ -106,7 +112,6 @@ export default class App extends Component {
 
               <Route path={'/Суши'}>
               <MenuFoods></MenuFoods>
-              {/* <Content addItem={this.addItem} data={Data}></Content> */}
               </Route>
             </div>
 

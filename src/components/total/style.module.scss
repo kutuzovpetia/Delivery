@@ -1,40 +1,48 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 30px;
-    background-color: #111;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+  background-color: #111;
 
-.total {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.185);
-    padding-top: 20px;
-
-}
-
-.subTitle{
-    width: 360px;
-}
-
-.subTitleFree{
-    width: 360px;
-    color: #FFDD3E;
-    font-weight: 600;
-}
-
-.btnOrder{
+  .butt {
     min-width: 250px;
     padding: 15px 50px;
     color: black;
+    font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
+  }
 }
 
-.progressBar{
-    background-color: #FFDD3E;
-    width: 100%;
-    height: 4px;
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.185);
+  padding-top: 20px;
+}
+
+.subTitle {
+  width: 360px;
+}
+
+.subTitleFree {
+  width: 360px;
+  color: #ffdd3e;
+  font-weight: 600;
+}
+
+// .btnOrder {
+//   min-width: 250px;
+//   padding: 15px 50px;
+//   color: black;
+//   font-weight: 600;
+//   text-transform: uppercase;
+// }
+
+.progressBar {
+  background-color: #ffdd3e;
+  width: 100%;
+  height: 4px;
 }

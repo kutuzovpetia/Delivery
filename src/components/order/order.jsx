@@ -4,7 +4,7 @@ import ItemOrder from "../item-order/item-order";
 import Total from "../total";
 import { connect } from "react-redux";
 import * as actions from "../../action/action";
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group"; // !!!!!!!!! доробити  або видалити
 
 class Order extends Component {
   constructor(props) {
@@ -40,10 +40,7 @@ class Order extends Component {
     return (
       <div id="mySideOrder" className={s.sideOrder}>
         <h2 className={s.title}>Корзина</h2>
-
-        <div className={s.wrapper}>
-            {elements}
-        </div>
+        <div className={s.wrapper}>{elements}</div>
         <div className={s.total}>
           <Total></Total>
         </div>

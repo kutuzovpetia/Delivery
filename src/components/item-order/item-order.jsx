@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import s from "./style.module.css";
+import s from "./style.module.scss";
 import trash from "../../image/trash.png";
 import img from "../../image/f1.png";
 import * as actions from '../../action/action';
 import {connect} from 'react-redux';
+import Button from 'react-bootstrap/Button'
 
 class ItemOrder extends Component {
   constructor(props) {
