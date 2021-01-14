@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 class ItemOrder extends Component {
   constructor(props) {
     super(props);
-    this.state = { count: 1,};
+    // this.state = { count: 1,};
     this.onPlus = this.onPlus.bind(this);
     this.onMinus = this.onMinus.bind(this);
     this.addPlus = this.addPlus.bind(this);
@@ -28,42 +28,43 @@ class ItemOrder extends Component {
     totalUpdate(s);
   }
 
-  // onPlus() {
-  //  const{Pluse, id}= this.props;
-  //  let {count} = this.props;
-  //  Pluse(id,++count);
-  //  this.addPlus();
-  // }
-
-  // onMinus() {
-  //   const{Minus, id} = this.props;
-  //   let {count} = this.props;
-  //   if(count === 1){return;}
-  //   Minus(id,--count);
-  //   this.addMinus();
-  // }
-
   onPlus() {
-    let {count} = this.state;
-    this.setState({
-      count: ++count
-    })
-    this.addPlus();
+   const{Pluse, id}= this.props;
+   let {count} = this.props;
+   Pluse(id,++count);
+   this.addPlus();
   }
-  
+
   onMinus() {
-    let {count} = this.state;
+    const{Minus, id} = this.props;
+    let {count} = this.props;
     if(count === 1){return;}
-    this.setState({
-      count: --count
-    })
+    Minus(id,--count);
     this.addMinus();
   }
 
+  // onPlus() {
+  //   let {count} = this.state;
+  //   this.setState({
+  //     count: ++count
+  //   })
+  //   this.addPlus();
+  // }
+  
+  // onMinus() {
+  //   let {count} = this.state;
+  //   if(count === 1){return;}
+  //   this.setState({
+  //     count: --count
+  //   })
+  //   this.addMinus();
+  // }
+
   render() {
     const {title, deleteItem, id, price, foodImg} = this.props;
-    const{count} = this.state;
-    const sum = count * price;
+
+    const sum = this.props.count * price;
+    console.log(this.props.order);
     return (
       <div className={`${s.item}`}>
         <div>
@@ -77,7 +78,7 @@ class ItemOrder extends Component {
               <span>-</span>
             </div>
             <div>
-              <span>{count}</span>
+              <span>{this.props.count}</span>
             </div>
             <div onClick={this.onPlus}>
               <span>+</span>
@@ -97,8 +98,7 @@ class ItemOrder extends Component {
 const mapStateToProps = (state) => {
  
   return{
-       total: state.total,
-       order: state.order,
+      total: state.total,
   }
 }
 

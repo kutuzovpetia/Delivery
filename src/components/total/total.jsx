@@ -35,7 +35,7 @@ class Total extends Component {
           total ? 
           <NavLink to="ordering" className={`${s.butt} nav-link btn btn-primary btn-success`}>Оформить заказ</NavLink> 
           :
-          <NavLink to="ordering" className={`${s.butt} nav-link btn btn-warning btn-primary disabled`}>Оформить заказ</NavLink>
+          <NavLink to="ordering" className={`${s.butt} nav-link btn btn-warning btn-primary disabled`} >Оформить заказ</NavLink>
         }
         
       </div>
@@ -46,6 +46,7 @@ class Total extends Component {
 const mapStateToProps = (state) => {
   return {
     total: state.total,
+    order: state.order
   };
 };
 

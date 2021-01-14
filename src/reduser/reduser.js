@@ -33,11 +33,18 @@ const reducer = (state = initialState, action) =>{
           return  { ...state, total: action.value }
         case 'DELETE_ITEM_FROM_ORDER':
           return { ...state, order : action.value }
+        
         case 'ON_PLUSE':
-          return {...state, order: state.order.map(item => {
+          return {
+            ...state,
+            order: state.order.map(item => {
             if(item.id === action.id){
-              return {...item, count : action.count}
+              return {
+                ...item,
+                count : action.count
+              }
             }
+            return item;
           }) }
 
         case 'ON_MINUS':
@@ -45,6 +52,7 @@ const reducer = (state = initialState, action) =>{
               if(item.id === action.id){
                 return {...item, count : action.count}
               }
+              return item;
           }) }  
 
         default:

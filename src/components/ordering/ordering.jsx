@@ -4,9 +4,10 @@ import s from "./style.module.scss";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { connect } from "react-redux";
+import Modal from 'react-bootstrap/Modal';
 
 const botToken = "1596428981:AAG5zWC68zFnxFXiCe1veYKrFks8vdQ7QEI";
-const chatId = "-1001396362536";
+const chatId = "-1001471493860";
 
 class Ordering extends Component {
   constructor(props) {
@@ -93,29 +94,33 @@ class Ordering extends Component {
 
     let menu = '';
 
-    this.props.order.forEach(item => {
-      menu += `${item.title}%0A`
+    this.props.order.forEach((item,i) => {
+      menu += `  ${i+1}) ${item.title} ${item.count} шт%0A`;
     });
 
     console.log(this.props.order);
     const message =
-  `😁Имя: ${name}%0A
-  Телефон: ${phone}%0A
-  Улица: ${street}%0A
-  Дом: ${home}%0A
-  Квартира: ${apart}%0A
-  ${!cashType ? 'Оплата наличными': 'Оплата картой'}%0A
-  Количество человек: ${peopleCount ? peopleCount : 'не указано'}%0A
-  Нужна сдача c ${zdacha ? zdacha : 'не указано'}%0A
-  Эко-упаковка: ${eco ? 'нужна' : 'не нужна'}%0A
-  Коментарий: ${comments ? comments : 'нет'}%0A
-  Меню:%0A
-  ${menu}
+  `Имя: ${name}%0A%0A
+  ☎ Телефон: ${phone}%0A%0A
+  🌁 Улица: ${street}%0A%0A
+  🏠 Дом: ${home}%0A%0A
+  🏢 Квартира: ${apart}%0A%0A
+  💰 ${!cashType ? 'Оплата наличными': 'Оплата картой'}%0A%0A
+  🙎 Количество человек: ${peopleCount ? peopleCount : 'не указано'}%0A%0A
+  💵 Нужна сдача c ${zdacha ? zdacha : 'не указано'}%0A%0A
+  📦 Эко-упаковка: ${eco ? 'нужна' : 'не нужна'}%0A%0A
+  📝 Коментарий: ${comments ? comments : 'нет'}%0A%0A
+   Меню:%0A
+  ************************************%0A
+  ${menu}%0A
+  💸 Сума: ${this.props.total} грн.
   `;
 
     fetch(
       `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&parse_mode=html&text=${message}`
     );
+
+    alert('Заказ успешно принят!');
     this.reset();
   }
 
@@ -125,12 +130,13 @@ class Ordering extends Component {
     console.log(cashType);
   }
 
+
   render() {
     
     return (
       <form id="telegram" className={`${s.wrapper}`}>
         {
-          this.state.error ? <Alert className={s.alert} variant="success">Не все поля заполнены!</Alert> : <Alert></Alert>
+          this.state.error ? <Alert className={s.alert} variant="success">Не все поля заполнены!</Alert> : null
         }
         
         <h3>Оформление заказа</h3>
