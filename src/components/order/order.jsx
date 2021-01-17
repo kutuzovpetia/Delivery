@@ -4,7 +4,6 @@ import ItemOrder from "../item-order/item-order";
 import Total from "../total";
 import { connect } from "react-redux";
 import * as actions from "../../action/action";
-import { TransitionGroup, CSSTransition } from "react-transition-group"; // !!!!!!!!! доробити  або видалити
 
 class Order extends Component {
   constructor(props) {

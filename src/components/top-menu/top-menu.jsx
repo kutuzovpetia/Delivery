@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./style.module.scss";
-import heart from "../../image/heart.png";
 import basket_ from "../../image/basket_.png";
 import basket from "../../image/basket.png";
 import {connect} from 'react-redux';
+
 
 class TopMenu extends Component {
   constructor(props) {
@@ -28,8 +28,10 @@ class TopMenu extends Component {
   render() {
     return (
       <nav className={"navbar navbar-expand-lg navbar-dark fixed-top " + s.menu}>
+        
         <div className={s.containerMy}>
           {/* <NavLink className="navbar-brand" to="/Главная">Navbar</NavLink> */}
+          {this.props.logining ? <span>ENTER</span>: null}
           <button
             className="navbar-toggler"
             type="button"
@@ -90,6 +92,7 @@ const mapStateToProps = (state) => {
   return{
       order: state.order,
       total: state.total,
+      logining: state.accountLogin,
   }
 }
 

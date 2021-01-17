@@ -1,0 +1,24 @@
+.sideOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 80px;
+    transition: 0.5s;
+    .wrapper::-webkit-scrollbar {width: 0;}
+    .wrapper{-ms-overflow-style: none;}
+    .wrapper {overflow: -moz-scrollbars-none;}
+    animation: anim 1s ease;
+}
+
+@keyframes anim{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}

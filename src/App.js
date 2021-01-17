@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./App.scss";
 import Header from "./components/header";
 import Order from "./components/order";
@@ -12,14 +12,19 @@ import firebase from "firebase/app";
 import "firebase/database";
 import Contact from './components/contact';
 import Ordering from './components/ordering';
+import UserPanel from './components/user-panel';
+import { connect } from "react-redux";
+import * as actions from "./action/action.js";
 
-export default class App extends Component {
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
       order: [], // Корзина
       sum: 0,
+      userState: false,
     };
   }
 
@@ -32,6 +37,10 @@ export default class App extends Component {
         data : elem.val(),
       });
     });
+
+    firebase.auth().onAuthStateChanged((user)=>{
+      user ? this.setState({userState: true}) : this.setState({userState: false});
+    })
   }
 /*****************************************************************/ 
 
@@ -56,7 +65,7 @@ export default class App extends Component {
               <Content addItem={this.addItem} data={Data}></Content>
               </Route>
 
-              <Route path="/about">
+              <Route path="/ordering">
               <Ordering></Ordering>
               </Route>
 
@@ -123,9 +132,22 @@ export default class App extends Component {
               addPlus={this.addPlus}
               addMinus={this.addMinus}
             ></Order>
+
+            {
+              this.state.userState ? <UserPanel></UserPanel> : null
+            }
+
           </div>
         </div>
       </BrowserRouter>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    logining: state.accountLogin
+  };
+};
+
+export default connect(mapStateToProps, actions)(App);

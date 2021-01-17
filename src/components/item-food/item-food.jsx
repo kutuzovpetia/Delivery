@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import s from "./style.module.scss";
-import clock from "../../image/clock.png";
-import basket from "../../image/basket.png";
+// import clock from "../../image/clock.png";
+// import basket from "../../image/basket.png";
 
 export default class ItemFood extends Component {
 
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      like: false,
-    }
+  //   this.state = {
+  //     like: false,
+  //   }
 
-    this.onLike = this.onLike.bind(this);
-  }
+  //   this.onLike = this.onLike.bind(this);
+  // }
 
 
-  onLike() {
-    const { like } = this.state;
-    this.setState({
-      like: !like
-    })
-  }
+  // onLike() {
+  //   const { like } = this.state;
+  //   this.setState({
+  //     like: !like
+  //   })
+  // }
 
   render() {
     const { id, title, price, getItem, foodImg, desc } = this.props;
-    const { like } = this.state;
+    // const { like } = this.state;
     return (
 
       <div className={s.container}>

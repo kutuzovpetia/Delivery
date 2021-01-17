@@ -5,6 +5,15 @@
   padding-bottom: 30px;
   background-color: #111;
 
+  .btnTriangle{
+    height: 20px;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    top: -23px;
+    cursor: pointer;
+  }
+
   .butt {
     min-width: 250px;
     padding: 15px 50px;

@@ -3,8 +3,10 @@ import s from "./style.module.scss";
 import firebase from 'firebase';
 import email from '../../image/email.png';
 import lock from '../../image/lock.png';
+import { connect } from "react-redux";
+import * as actions from "../../action/action";
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,35 +33,19 @@ export default class Register extends Component {
       } catch (error) {
         alert(error.message);
       }
-
-      
     }
     else if(type === 'enter'){
       await firebase.auth().signInWithEmailAndPassword(email, pass)
       .then((response) => {
-         this.setState({ hasAccount: true });
-         alert('Успешно вошли в систему');
-
-        /******Доробити********/
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            alert(user.email)
-          } else {
-            // No user is signed in.
-          }
-        });
-        /***************/
 
       })
       .catch((error) => console.log(error));
     }
-    
-    
-    
   };
 
   render() {
-    const { title, btnLabel } = this.props;
+    const { title, btnLabel} = this.props;
+    
     return (
       <div className={s.wrapperReg}>
         <h2>{title}</h2>
@@ -90,3 +76,11 @@ export default class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    logining: state.accountLogin
+  };
+};
+
+export default connect(mapStateToProps, actions)(Register);

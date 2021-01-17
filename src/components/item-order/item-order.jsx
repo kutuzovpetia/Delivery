@@ -4,7 +4,7 @@ import trash from "../../image/trash.png";
 import img from "../../image/f1.png";
 import * as actions from '../../action/action';
 import {connect} from 'react-redux';
-import Button from 'react-bootstrap/Button'
+// import Button from 'react-bootstrap/Button'
 
 class ItemOrder extends Component {
   constructor(props) {
@@ -64,7 +64,6 @@ class ItemOrder extends Component {
     const {title, deleteItem, id, price, foodImg} = this.props;
 
     const sum = this.props.count * price;
-    console.log(this.props.order);
     return (
       <div className={`${s.item}`}>
         <div>

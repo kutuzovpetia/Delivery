@@ -4,7 +4,6 @@ import s from "./style.module.scss";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { connect } from "react-redux";
-import Modal from 'react-bootstrap/Modal';
 
 const botToken = "1596428981:AAG5zWC68zFnxFXiCe1veYKrFks8vdQ7QEI";
 const chatId = "-1001471493860";
