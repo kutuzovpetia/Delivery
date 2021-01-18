@@ -5,3 +5,4 @@ export const totalUpdate = (total) => ({type: 'TOTAL_UPDATE', value: total});
 export const Pluse = (Id, Count) => ({type: 'ON_PLUSE', id : Id, count: Count});
 export const Minus = (Id, Count) => ({type: 'ON_MINUS', id : Id, count: Count});
 export const SetPromo = (promo) => ({type: 'SET_PROMO', value: promo });
+export const SetUser = (user) => ({type: 'SET_USER', value: user });

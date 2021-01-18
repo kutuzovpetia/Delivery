@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: auto;
+    padding-bottom: 30px;
     width: 300px;
     position: fixed;
     z-index: 1;
@@ -16,9 +17,32 @@
     .wrapper{-ms-overflow-style: none;}
     .wrapper {overflow: -moz-scrollbars-none;}
     animation: anim 1s ease;
+
+    .close{
+        font-size: 14px;
+        position: absolute;
+        right: 0;
+        margin-right: 15px;
+    }
+
+    h5{
+        font-size: 17px;
+        padding-top: 50px;
+        color: #128fae;
+        padding-bottom: 20px;
+    }
+
+    p{
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .btnPromo,p{
+        width: 250px;
+    }
 }
 
 @keyframes anim{
-    from{opacity: 0;}
-    to{opacity: 1;}
+    from{width: 0;}
+    to{width: 300px;}
 }

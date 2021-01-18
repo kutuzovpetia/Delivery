@@ -5,6 +5,7 @@ const initialState = {
     order: [],
     total: 0,
     accountLogin: false,
+    user: '',
     carouselItem : [
       {
         title: 'БИГ СЕТ',
@@ -50,8 +51,9 @@ const reducer = (state = initialState, action) =>{
               return item;
           }) }  
         case 'SET_PROMO':
-          console.log(action.value);
           return {...state, promocode : action.value}
+        case 'SET_USER':
+          return {...state, user : action.value}
         default:
           return state;
       }

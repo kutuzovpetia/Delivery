@@ -39,14 +39,6 @@ componentDidMount(){
       );
     });
 
-    // const elements = data.map((item) => {
-    //   return (
-    //     <li key={item.id}>
-    //       <ItemMenuFoods menuImg={item.menuImg} text={item.text}></ItemMenuFoods>
-    //     </li>
-    //   );
-    // });
-
     return (
         <ul className={`${s.menu}`}>
         {elements}

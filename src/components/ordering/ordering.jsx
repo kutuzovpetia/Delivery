@@ -24,6 +24,7 @@ class Ordering extends Component {
       eco: false,
       comments: '',
       error: false,
+      discount: false,
     };
 
     this.reset = this.reset.bind(this);
@@ -109,10 +110,11 @@ class Ordering extends Component {
   💵 Нужна сдача c ${zdacha ? zdacha : 'не указано'}%0A%0A
   📦 Эко-упаковка: ${eco ? 'нужна' : 'не нужна'}%0A%0A
   📝 Коментарий: ${comments ? comments : 'нет'}%0A%0A
+  💲 Скидка: ${this.state.discount ? '-10%' : 'нет'}%0A%0A
    Меню:%0A
   ************************************%0A
   ${menu}%0A
-  💸 Сума: ${this.props.total} грн.
+  💸 Сума: ${this.state.discount ? Math.round(this.props.total * (1-(10/100)))  : this.props.total} грн.
   `;
 
     fetch(
@@ -132,6 +134,8 @@ class Ordering extends Component {
 
   render() {
     
+    console.log(this.state.discount);
+
     return (
       <form id="telegram" className={`${s.wrapper}`}>
         {
@@ -246,6 +250,7 @@ class Ordering extends Component {
             className={`${s.promocode} form-control`}
             type="text"
             placeholder="Промокод"
+            onChange={(e)=>{this.props.promocode === e.target.value ? this.setState({discount: true}) : this.setState({discount: false})}}
           />
         </div>
 
@@ -276,6 +281,7 @@ const mapStateToProps = (state) => {
   return {
     order: state.order,
     total: state.total,
+    promocode : state.promocode,
   };
 };
 

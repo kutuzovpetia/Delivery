@@ -40,6 +40,7 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user)=>{
       user ? this.setState({userState: true}) : this.setState({userState: false});
+      user ? this.props.SetUser(user.email) : this.props.SetUser(null);
     })
   }
 /*****************************************************************/ 
@@ -146,7 +147,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    logining: state.accountLogin
+    logining: state.accountLogin,
+    user: state.user
   };
 };
 
