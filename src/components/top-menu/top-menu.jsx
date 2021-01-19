@@ -56,11 +56,14 @@ class TopMenu extends Component {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <NavLink to="home" className={"nav-link"}>
+              <NavLink to="бургеры" className={"nav-link"}>
                 Главная
               </NavLink>
               <NavLink to="contact" className={"nav-link"}>
                 Контакты
+              </NavLink>
+              <NavLink to="comments" className={"nav-link"}>
+                Отзывы
               </NavLink>
               <NavLink to="about" className={"nav-link"}>
                 О нас

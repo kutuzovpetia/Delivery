@@ -8,7 +8,27 @@ import * as actions from "../../action/action";
 
 class UserPanel extends Component {
   
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      name: '',
+      comment: '',
+    }
+    this.addComment = this.addComment.bind(this);
+  }
+
+  addComment(){
+    const db = firebase.database();
+    const obj = { name: this.state.name, comment: this.state.comment}
+    obj.name && obj.comment ? 
+    db.ref('Comments').push(obj)
+    : alert('Не все поля заполнены!');
+  }
+
   render() {
+
     return (
       <div className={s.sideOrder}>
         <h5>{this.props.userMail}</h5>
@@ -17,6 +37,21 @@ class UserPanel extends Component {
         <button className={`${s.btnPromo} btn btn-warning`} onClick={() => { firebase.auth().onAuthStateChanged((user) => { this.props.SetPromo(user ? user.uid : null);});}}>
           Получить промокод
         </button>
+        <hr/>
+        <p>Оставить коментарий на сайте</p>
+        <input className={s.inputName} 
+        type="text" 
+        placeholder="Ваше имя"
+        onChange={(e)=>{this.setState({name: e.target.value})}}
+        />
+
+        <textarea className={s.textArea}
+         cols="30" 
+         rows="10" 
+         placeholder={'Напишите коментарий'}
+         onChange={(e)=>{ this.setState({comment: e.target.value})}}
+         ></textarea>
+        <button onClick={()=>{this.addComment()}} className={`${s.btnComment} btn btn-warning`}>Отправить коментарий</button>
       </div>
     );
   }
