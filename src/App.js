@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./App.scss";
 import Header from "./components/header";
 import Order from "./components/order";
@@ -8,15 +7,14 @@ import TopMenu from "./components/top-menu";
 import Register from "./components/register";
 import MenuFoods from "./components/menu-foods";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
-// import firebase from "firebase/app";
 import firebase from "firebase";
-// import "firebase/database";
 import Contact from './components/contact';
 import Ordering from './components/ordering';
 import UserPanel from './components/user-panel';
 import { connect } from "react-redux";
 import * as actions from "./action/action.js";
 import Comments from "./components/comments";
+import About from "./components/about";
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +37,15 @@ class App extends Component {
       const tempObj = elem.val(); // Получаем обьект с обьектами
       Object.keys(tempObj).forEach(elem => { Data.push(tempObj[elem]); }); // Пушим обьекты в массив
       this.setState({ data : Data}); // Обновляем состояние
+    });
+
+    const comments = db.ref('Comments');
+    comments.on('value', (elem)=>{
+      
+      const Data = [];  // Временный массив
+      const tempObj = elem.val(); // Получаем обьект с обьектами
+      Object.keys(tempObj).forEach(elem => { Data.push(tempObj[elem]); }); // Пушим обьекты в массив
+      this.props.SetComments(Data);
     });
 
     firebase.auth().onAuthStateChanged((user)=>{
@@ -120,7 +127,7 @@ class App extends Component {
               </Route>
 
               <Route path={'/Суши'}>
-              <MenuFoods></MenuFoods>
+              <Content addItem={this.addItem} data={data}></Content>
               </Route>
             </div>
 
@@ -135,6 +142,10 @@ class App extends Component {
 
             <Route path={'/comments'}>
               <Comments></Comments>
+            </Route>
+
+            <Route path={'/about'}>
+              <About></About>
             </Route>
 
             {

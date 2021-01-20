@@ -1,29 +1,39 @@
 import React from "react";
 import { Component } from "react";
 import s from "./style.module.scss";
-import Radio from "@material-ui/core/Radio";
+import { connect } from "react-redux";
+import * as actions from "../../action/action.js";
 
-export default class Comments extends Component {
-  constructor(props) {
-    super(props);
+class Comments extends Component {
 
-    //    this.getDate = this.getDate.bind(this);
-  }
-
-  getDate() {
-    const now = new Date().toLocaleDateString();
-    return now;
-  }
 
   render() {
-    return (
-      <div className={s.wrapper}>
-        <div className={`d-flex `}>
-          <h5 className="mr-2">Кристина</h5>
-          <p>{` - ${this.getDate()}`}</p>
+
+   const elements = this.props.comments.map((item)=>{
+      return (
+        <div key={item.id} className={s.wrapper}>
+          <div className={`d-flex `}>
+            <h5 className="mr-2">{item.name}</h5>
+            <p className={`${s.date}`}>{` - ${item.date}`}</p>
+          </div>
+          <p>{item.comment}</p>
         </div>
-        <p>Великолепная еда! заказывали легкие блюда — шашлык из курицы, картошку и грибы на мангале. Все изумительное, мягкое, в меру соленое, сочное! при этом цены очень демократичные, доставка аккуратная и быстрая. Обязательно будем заказывать и пробовать еще. Приятно, что в нашем районе есть такое хорошее место!)</p>
+      );
+    })
+    
+    return(
+      <div className={s.border}>
+        <h4>Всего {this.props.comments.length} коментариев</h4>
+        {elements}
       </div>
-    );
+    )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    comments: state.comments,
+  };
+};
+
+export default connect(mapStateToProps, actions)(Comments);

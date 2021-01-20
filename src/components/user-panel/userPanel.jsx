@@ -19,12 +19,19 @@ class UserPanel extends Component {
     this.addComment = this.addComment.bind(this);
   }
 
+
   addComment(){
     const db = firebase.database();
-    const obj = { name: this.state.name, comment: this.state.comment}
+    const obj = { 
+      id: this.props.comments.length+1,
+      name: this.state.name, 
+      comment: this.state.comment, 
+      date: new Date().toLocaleDateString(),
+    }
     obj.name && obj.comment ? 
     db.ref('Comments').push(obj)
     : alert('Не все поля заполнены!');
+    this.setState({name:'',comment:'',}) // очистка полей
   }
 
   render() {
@@ -43,9 +50,11 @@ class UserPanel extends Component {
         type="text" 
         placeholder="Ваше имя"
         onChange={(e)=>{this.setState({name: e.target.value})}}
+        value={this.state.name}
         />
 
         <textarea className={s.textArea}
+         value={this.state.comment}
          cols="30" 
          rows="10" 
          placeholder={'Напишите коментарий'}
@@ -61,6 +70,7 @@ const mapStateToProps = (state) => {
   return {
     promocode: state.promocode,
     userMail: state.user,
+    comments: state.comments
   };
 };
 

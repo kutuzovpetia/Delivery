@@ -22,7 +22,8 @@ const initialState = {
         img: 'https://firebasestorage.googleapis.com/v0/b/delivery-5fd13.appspot.com/o/carouselItems%2Fhuge_set.png?alt=media&token=0f4f8f48-229d-4f02-b17a-24ea1a069dad',
         desc: 'ФЭТБОЙ 2.0 / ВЕЙДЕР / ТРАМП / КОНГ / ДВА КАРТОФЕЛЯ ФРИ / ДВА ПО-ДЕРЕВЕНСКИ / СОУСЫ: ОСТРЫЙ / BBQ / ЧЕДДЕР / МЕДОВО-ГОРЬЧИЧНЫЙ / 1900г',
       },
-    ]
+    ],
+    comments: [],
 }
 
 const reducer = (state = initialState, action) =>{
@@ -54,6 +55,8 @@ const reducer = (state = initialState, action) =>{
           return {...state, promocode : action.value}
         case 'SET_USER':
           return {...state, user : action.value}
+        case 'SET_COMMENTS':
+          return{...state, comments : action.value}
         default:
           return state;
       }

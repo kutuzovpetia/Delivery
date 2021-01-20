@@ -1,5 +1,24 @@
 .wrapper{
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 15px;
-    border: 1px solid white;
+    border: 1px solid rgba(128, 128, 128, 0.589);
+
+    h5{
+        color: #128fae;
+    }
+    .date{
+        color: #ffdb2b;
+        margin-top: 1px;
+    }
+    
+}
+
+.border{
+    margin-top: 20px;
+    border: 1px solid rgba(128, 128, 128, 0.589);
+    padding: 30px;
+}
+h4{
+    text-align: end;
+    margin: 0;
 }
