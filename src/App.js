@@ -15,6 +15,8 @@ import { connect } from "react-redux";
 import * as actions from "./action/action.js";
 import Comments from "./components/comments";
 import About from "./components/about";
+import Modal from "./components/modal-order";
+
 
 class App extends Component {
   constructor(props) {
@@ -64,9 +66,7 @@ class App extends Component {
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
-
               <Redirect from="/" to="Бургеры"></Redirect> {/*Start!*/}
-
               <Route path="/home">
               <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
@@ -146,6 +146,7 @@ class App extends Component {
 
             <Route path={'/about'}>
               <About></About>
+              {/* <Modal></Modal> */}
             </Route>
 
             {

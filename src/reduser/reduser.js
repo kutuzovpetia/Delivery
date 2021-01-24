@@ -24,6 +24,7 @@ const initialState = {
       },
     ],
     comments: [],
+    showModal: false,
 }
 
 const reducer = (state = initialState, action) =>{
@@ -57,6 +58,10 @@ const reducer = (state = initialState, action) =>{
           return {...state, user : action.value}
         case 'SET_COMMENTS':
           return{...state, comments : action.value}
+        case 'CLEAR_ORDER':
+          return{...state, order : []}
+        case 'SHOW_MODAL':
+          return{...state, showModal : !state.showModal}
         default:
           return state;
       }

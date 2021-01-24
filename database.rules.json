@@ -1,13 +1,7 @@
-// {
-//   "rules": {
-//     ".read": "now < 1610402400000",  // 2021-1-12
-//     ".write": "now < 1610402400000",  // 2021-1-12
-//   }
-// }
 
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    ".read": "true",
+    ".write": "true"
   }
 }

@@ -22,7 +22,7 @@ class Total extends Component {
 
     return (
       <div className={s.wrapper}>
-        <img src={this.state.openClose ? btnTriangle : btnCross} alt="..." className={`${s.btnTriangle}`} onClick={()=>{this.setState({openClose: !this.state.openClose})}}/>
+        <img title={this.state.openClose ? "Показать" : "Скрыть"} src={this.state.openClose ? btnTriangle : btnCross} alt="..." className={`${s.btnTriangle}`} onClick={()=>{this.setState({openClose: !this.state.openClose})}}/>
         {
           this.state.openClose ? null :
           <div>

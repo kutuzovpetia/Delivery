@@ -1,0 +1,24 @@
+.wrapper{
+    
+    background-color: #111;
+    height: auto;
+    padding: 20px;
+    // border-radius: 20px;
+    z-index: 1000;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+
+    h1{
+        border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+        padding: 20px 0;
+    }
+    p{
+        margin: 7px 0;
+    }
+}
+
+.item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.555);
+}

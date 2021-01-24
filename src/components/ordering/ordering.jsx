@@ -4,6 +4,9 @@ import s from "./style.module.scss";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import { connect } from "react-redux";
+import * as actions from '../../action/action';
+import Modal from "../modal-order";
+import Mod from "react-bootstrap/Modal";
 
 const botToken = "1596428981:AAG5zWC68zFnxFXiCe1veYKrFks8vdQ7QEI";
 const chatId = "-1001471493860";
@@ -19,10 +22,10 @@ class Ordering extends Component {
       home: "",
       apart: "",
       cashType: false,
-      peopleCount: '',
-      zdacha: '',
+      peopleCount: "",
+      zdacha: "",
       eco: false,
-      comments: '',
+      comments: "",
       error: false,
       discount: false,
     };
@@ -38,7 +41,7 @@ class Ordering extends Component {
   }
 
   reset() {
-    this.setState({ name: "", phone: "", street: "", home: "", apart: "", comments: "", peopleCount: "", zdacha: ""});
+    this.setState({ name: "", phone: "", street: "", home: "", apart: "", comments: "", peopleCount: "", zdacha: "",});
   }
 
   onNameChange(e) {
@@ -78,50 +81,52 @@ class Ordering extends Component {
   }
 
   sendMsg() {
-    const { name, phone, street, home, apart, cashType, peopleCount, zdacha, eco, comments } = this.state;
+    const { name, phone, street, home, apart, cashType,peopleCount,zdacha,eco,comments, } = this.state;
 
     if (!name || !phone || !street || !home || !apart) {
-
-      this.setState({error: true,});
+      this.setState({ error: true });
       setTimeout(() => {
         this.setState({
           error: false,
         });
       }, 2000);
+
       return;
     }
 
+    let menu = "";
 
-    let menu = '';
-
-    this.props.order.forEach((item,i) => {
-      menu += `  ${i+1}) ${item.title} ${item.count} шт%0A`;
+    this.props.order.forEach((item, i) => {
+      menu += `  ${i + 1}) ${item.title} ${item.count} шт%0A`;
     });
 
     console.log(this.props.order);
-    const message =
-  `Имя: ${name}%0A%0A
+    const message = `Имя: ${name}%0A%0A
   ☎ Телефон: ${phone}%0A%0A
   🌁 Улица: ${street}%0A%0A
   🏠 Дом: ${home}%0A%0A
   🏢 Квартира: ${apart}%0A%0A
-  💰 ${!cashType ? 'Оплата наличными': 'Оплата картой'}%0A%0A
-  🙎 Количество человек: ${peopleCount ? peopleCount : 'не указано'}%0A%0A
-  💵 Нужна сдача c ${zdacha ? zdacha : 'не указано'}%0A%0A
-  📦 Эко-упаковка: ${eco ? 'нужна' : 'не нужна'}%0A%0A
-  📝 Коментарий: ${comments ? comments : 'нет'}%0A%0A
-  💲 Скидка: ${this.state.discount ? '-10%' : 'нет'}%0A%0A
+  💰 ${!cashType ? "Оплата наличными" : "Оплата картой"}%0A%0A
+  🙎 Количество человек: ${peopleCount ? peopleCount : "не указано"}%0A%0A
+  💵 Нужна сдача c ${zdacha ? zdacha : "не указано"}%0A%0A
+  📦 Эко-упаковка: ${eco ? "нужна" : "не нужна"}%0A%0A
+  📝 Коментарий: ${comments ? comments : "нет"}%0A%0A
+  💲 Скидка: ${this.state.discount ? "-10%" : "нет"}%0A%0A
    Меню:%0A
   ************************************%0A
   ${menu}%0A
-  💸 Сума: ${this.state.discount ? Math.round(this.props.total * (1-(10/100)))  : this.props.total} грн.
+  💸 Сума: ${
+    this.state.discount
+      ? Math.round(this.props.total * (1 - 10 / 100))
+      : this.props.total
+  } грн.
   `;
 
     fetch(
       `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&parse_mode=html&text=${message}`
     );
 
-    alert('Заказ успешно принят!');
+    alert("Заказ успешно принят!");
     this.reset();
   }
 
@@ -131,17 +136,17 @@ class Ordering extends Component {
     console.log(cashType);
   }
 
-
   render() {
-    
-    console.log(this.state.discount);
-
+    console.log(this.props.show);
+    const { name,phone,street,home,apart,cashType,peopleCount,zdacha,eco,comments,} = this.state;
     return (
       <form id="telegram" className={`${s.wrapper}`}>
-        {
-          this.state.error ? <Alert className={s.alert} variant="success">Не все поля заполнены!</Alert> : null
-        }
-        
+        {this.state.error ? (
+          <Alert className={s.alert} variant="success">
+            Не все поля заполнены!
+          </Alert>
+        ) : null}
+
         <h3>Оформление заказа</h3>
         <button
           className={`${s.reset} btn btn-warning mr-3`}
@@ -229,18 +234,42 @@ class Ordering extends Component {
           <div>
             <div className="d-flex">
               <label htmlFor="peopleCount">Количество человек</label>
-              <input className="form-control" id="peopleCount" type="text" value={this.state.peopleCount} onChange={(e)=>{this.setState({peopleCount: e.target.value})}}/>
+              <input
+                className="form-control"
+                id="peopleCount"
+                type="text"
+                value={this.state.peopleCount}
+                onChange={(e) => {
+                  this.setState({ peopleCount: e.target.value });
+                }}
+              />
             </div>
             <div className="d-flex">
               <label htmlFor="change">Нужна сдача с </label>
-              <input className="form-control" id="change" type="text" value={this.state.zdacha} onChange={(e)=>{this.setState({zdacha: e.target.value})}}/>
+              <input
+                className="form-control"
+                id="change"
+                type="text"
+                value={this.state.zdacha}
+                onChange={(e) => {
+                  this.setState({ zdacha: e.target.value });
+                }}
+              />
             </div>
           </div>
         </div>
 
         <div className="d-flex mt-5 justify-content-between mb-5 flex-wrap">
           <div>
-            <input id="eco" type="checkbox" value={this.state.eco} onChange={(e)=>{this.setState({eco: !this.state.eco}); console.log(e.target.value)}}/>
+            <input
+              id="eco"
+              type="checkbox"
+              value={this.state.eco}
+              onChange={(e) => {
+                this.setState({ eco: !this.state.eco });
+                console.log(e.target.value);
+              }}
+            />
             <label className="ml-2 eco" htmlFor="eco">
               Эко-упаковка
             </label>
@@ -250,7 +279,11 @@ class Ordering extends Component {
             className={`${s.promocode} form-control`}
             type="text"
             placeholder="Промокод"
-            onChange={(e)=>{this.props.promocode === e.target.value ? this.setState({discount: true}) : this.setState({discount: false})}}
+            onChange={(e) => {
+              this.props.promocode === e.target.value
+                ? this.setState({ discount: true })
+                : this.setState({ discount: false });
+            }}
           />
         </div>
 
@@ -259,7 +292,9 @@ class Ordering extends Component {
           type="text"
           placeholder="Коментарии к заказу"
           value={this.state.comments}
-          onChange={(e)=>{this.setState({comments: e.target.value})}}
+          onChange={(e) => {
+            this.setState({ comments: e.target.value });
+          }}
         />
 
         <div className="d-flex justify-content-center mt-4 mb-3">
@@ -267,11 +302,28 @@ class Ordering extends Component {
             type="button"
             className={s.ok}
             variant="warning"
-            onClick={this.sendMsg}
+            // onClick={this.sendMsg}
+            onClick={()=>{this.props.showMod()}}
           >
             СДЕЛАТЬ ЗАКАЗ
           </Button>
         </div>
+
+        <Mod show={this.props.show} onHide={this.props.showMod}>
+          <Modal
+            name={name}
+            phone={phone}
+            street={street}
+            home={home}
+            apart={apart}
+            cashType={cashType}
+            peopleCount={peopleCount}
+            zdacha={zdacha}
+            eco={eco}
+            comments={comments}
+            sendMsg={this.sendMsg}
+          />
+        </Mod>
       </form>
     );
   }
@@ -281,8 +333,9 @@ const mapStateToProps = (state) => {
   return {
     order: state.order,
     total: state.total,
-    promocode : state.promocode,
+    promocode: state.promocode,
+    show: state.showModal,
   };
 };
 
-export default connect(mapStateToProps)(Ordering);
+export default connect(mapStateToProps, actions)(Ordering);
