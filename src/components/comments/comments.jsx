@@ -7,6 +7,15 @@ import * as actions from "../../action/action.js";
 class Comments extends Component {
 
 
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef(); // Создаем ссылку
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0); // Прокрутка вверх
+  }
+
   render() {
 
    const elements = this.props.comments.map((item)=>{
@@ -22,7 +31,7 @@ class Comments extends Component {
     })
     
     return(
-      <div className={s.border}>
+      <div className={s.border} ref={this.myRef}>
         <h4>Всего {this.props.comments.length} коментариев</h4>
         {elements}
       </div>

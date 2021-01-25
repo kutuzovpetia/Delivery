@@ -4,8 +4,8 @@ const initialState = {
     promocode: null,
     order: [],
     total: 0,
-    accountLogin: false,
-    user: '',
+    // accountLogin: false,
+    user: '', // email Юзера
     carouselItem : [
       {
         title: 'БИГ СЕТ',
@@ -25,6 +25,7 @@ const initialState = {
     ],
     comments: [],
     showModal: false,
+    userLoggedIn: false, // Вошел ли вользователь
 }
 
 const reducer = (state = initialState, action) =>{

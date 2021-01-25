@@ -11,7 +11,7 @@ export default class ItemMenuFoods extends Component{
         return(
             <NavLink to={this.props.text} activeClassName={s.active} className={`${s.item} d-flex align-items-end`}>
                 <img src={this.props.menuImg} alt='...'></img>
-                <p className={s.text}>{this.props.text}</p>
+                <p className={s.text}>{this.props.title}</p>
             </NavLink>
         )
     }

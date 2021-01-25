@@ -24,6 +24,25 @@
         margin: auto;
         padding-right: 15px;
         padding-left: 15px;
-    }
 
+        .bask{
+            position: absolute;
+            right: 0;
+        }
+
+        .signOut{
+            display: flex;
+            @media (max-width: 991px) {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .style{
+            @media (max-width: 991px) {
+                overflow: hidden;
+                height: 0;
+            }
+        }
+    }
 }

@@ -4,7 +4,7 @@ import s from "./style.module.scss";
 import basket_ from "../../image/basket_.png";
 import basket from "../../image/basket.png";
 import {connect} from 'react-redux';
-
+import firebase from "firebase/app";
 
 class TopMenu extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class TopMenu extends Component {
 
     this.state = {
       openNav: false,
+      userLoggedIn: false,
     };
   }
 
@@ -25,13 +26,23 @@ class TopMenu extends Component {
     openNav ? (Order.style.width = "0") : (Order.style.width = "380px");
   };
 
+  closeNav = () => {
+    document.querySelector('#navbarNavAltMarkup').classList.remove('show');
+  }
+
+ componentDidMount(){
+  firebase.auth().onAuthStateChanged((user)=>{
+    user ? this.setState({userLoggedIn: true}) : this.setState({userLoggedIn: false});
+  })
+ }
+
+
   render() {
+
     return (
       <nav className={"navbar navbar-expand-lg navbar-dark fixed-top " + s.menu}>
         
         <div className={s.containerMy}>
-          {/* <NavLink className="navbar-brand" to="/Главная">Navbar</NavLink> */}
-          {this.props.logining ? <span>ENTER</span>: null}
           <button
             className="navbar-toggler"
             type="button"
@@ -45,39 +56,45 @@ class TopMenu extends Component {
           </button>
 
           <img
-            className={`navbar-toggler`}
+            className={`${s.bask} navbar-toggler`}
             src={this.props.order.length === 0 ? basket : basket_}
             alt="..."
-            onClick={this.openNav}
+            onClick={()=>{this.openNav(); this.closeNav()}}
           />
+          
 
           <div
             className="collapse navbar-collapse justify-content-between"
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <NavLink to="бургеры" className={"nav-link"}>
+              <NavLink onClick={this.closeNav} to="burgers" className={"nav-link"}>
                 Главная
               </NavLink>
-              <NavLink to="contact" className={"nav-link"}>
+              <NavLink onClick={this.closeNav} to="contact" className={"nav-link"}>
                 Контакты
               </NavLink>
-              <NavLink to="comments" className={"nav-link"}>
+              <NavLink onClick={this.closeNav} to="comments" className={"nav-link"}>
                 Отзывы
               </NavLink>
-              <NavLink to="about" className={"nav-link"}>
+              <NavLink onClick={this.closeNav} to="about" className={"nav-link"}>
                 О нас
               </NavLink>
             </div>
 
             <div className="d-flex navbar-nav align-items-center">
-              <NavLink to="/enter" className={"nav-link activ" + s.menuItem}>
-                Вход
-              </NavLink>
-              <NavLink to="/register" className={"nav-link activ" + s.menuItem}>
-                Регистрация
-              </NavLink>
-              <div className="d-flex align-items-center">
+
+              {
+                !this.state.userLoggedIn ? 
+                <div className={`${s.signOut}`}>
+                    <NavLink onClick={this.closeNav} to="/enter" className={"nav-link activ" + s.menuItem}>Вход</NavLink>
+                    <NavLink onClick={this.closeNav} to="/register" className={"nav-link activ" + s.menuItem}>Регистрация</NavLink>
+                </div>
+                :
+                <button className={`btn btn-danger`} onClick={()=>{firebase.auth().signOut()}}>Выйти</button>
+              }
+              
+              <div className={`${s.style} d-flex align-items-center`}>
                 <div className={`${s.topI}`}>
                   <img src={this.props.order.length === 0 ? basket : basket_} alt="..." onClick={this.openNav} />
                 </div>

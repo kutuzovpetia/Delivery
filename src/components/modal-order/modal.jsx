@@ -5,10 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../action/action";
 
 class Modal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
     const { name, phone, street, home, apart, cashType, peopleCount, zdacha, eco, comments} = this.props;
 

@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import s from "./style.module.scss";
 import ItemMenuFoods from "../menu-foods-item/menu-item";
-// import firebase from 'firebase/app';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+
 
 export default class MenuFoods extends Component {
-
 constructor(props){
   super(props);
 
   this.state = {
     d: [],
-    // menuItem: [],
   }
 }
 
@@ -34,7 +32,7 @@ componentDidMount(){
     const elements = d.map((item) => {
       return (
         <li key={item.id}>
-          <ItemMenuFoods menuImg={item.img} text={item.text}></ItemMenuFoods>
+          <ItemMenuFoods menuImg={item.img} text={item.text} title={item.title}></ItemMenuFoods>
         </li>
       );
     });

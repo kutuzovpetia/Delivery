@@ -5,9 +5,9 @@ import Order from "./components/order";
 import Content from "./components/content";
 import TopMenu from "./components/top-menu";
 import Register from "./components/register";
-import MenuFoods from "./components/menu-foods";
+// import MenuFoods from "./components/menu-foods";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import Contact from './components/contact';
 import Ordering from './components/ordering';
 import UserPanel from './components/user-panel';
@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import * as actions from "./action/action.js";
 import Comments from "./components/comments";
 import About from "./components/about";
-import Modal from "./components/modal-order";
+// import Modal from "./components/modal-order";
 
 
 class App extends Component {
@@ -42,13 +42,15 @@ class App extends Component {
     });
 
     const comments = db.ref('Comments');
+
     comments.on('value', (elem)=>{
-      
       const Data = [];  // Временный массив
       const tempObj = elem.val(); // Получаем обьект с обьектами
       Object.keys(tempObj).forEach(elem => { Data.push(tempObj[elem]); }); // Пушим обьекты в массив
-      this.props.SetComments(Data);
+      const sortData = Data.sort((a,b)=>{return b.id - a.id;}); // Сортирую по id
+      this.props.SetComments(sortData);
     });
+
 
     firebase.auth().onAuthStateChanged((user)=>{
       user ? this.setState({userState: true}) : this.setState({userState: false});
@@ -66,7 +68,7 @@ class App extends Component {
           <div className="container">
             <div className="col-12">
               <TopMenu></TopMenu>
-              <Redirect from="/" to="Бургеры"></Redirect> {/*Start!*/}
+              <Redirect from="/" to="burgers"></Redirect> {/*Start!*/}
               <Route path="/home">
               <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
@@ -74,10 +76,6 @@ class App extends Component {
 
               <Route path="/ordering">
               <Ordering></Ordering>
-              </Route>
-
-              <Route path="/about">
-
               </Route>
 
               <Route path="/contact">
@@ -100,33 +98,28 @@ class App extends Component {
                 />
               </Route>
 
-              <Route path="/Все">
-              <Header className={s.header}></Header>
-              <Content addItem={this.addItem} data={data}></Content>
-              </Route>
-
-              <Route path={'/Бургеры'}>
+              <Route path={'/burgers'}>
               <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
-              <Route path={'/Рыба'}>
+              <Route path={'/fish'}>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
-              <Route path={'/Мясо'}>
+              <Route path={'/meate'}>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
-              <Route path={'/Паста'}>
+              <Route path={'/pasta'}>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
-              <Route path={'/Пицца'}>
+              <Route path={'/pizza'}>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
-              <Route path={'/Суши'}>
+              <Route path={'/sushi'}>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
             </div>
@@ -146,7 +139,6 @@ class App extends Component {
 
             <Route path={'/about'}>
               <About></About>
-              {/* <Modal></Modal> */}
             </Route>
 
             {

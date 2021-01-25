@@ -1,5 +1,8 @@
 .header {
   max-width: 800px;
   height: auto;
-  // background-color:#1D1D1D;
+
+  @media (max-width: 500px) {
+    height: 370px;
+  }
 }

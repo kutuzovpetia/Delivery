@@ -15,6 +15,7 @@ class UserPanel extends Component {
     this.state = {
       name: '',
       comment: '',
+      showPanel: false
     }
     this.addComment = this.addComment.bind(this);
   }
@@ -35,12 +36,21 @@ class UserPanel extends Component {
   }
 
   render() {
-
+   const{showPanel}=this.state;
     return (
-      <div className={s.sideOrder}>
+      
+      !showPanel?
+      <div className={!showPanel ? s.sideOrder : s.sideOrder_hide}>
         <h5>{this.props.userMail}</h5>
         <p>{this.props.promocode ? this.props.promocode : 'Получить скидку в 10%'}</p>
-        <button className={`${s.close} btn btn-danger`} onClick={() => { firebase.auth().signOut();}}>Выход</button>
+        
+
+        {/* <button className={`${s.close} btn btn-danger`} onClick={() => { this.setState({showPanel: !this.state.showPanel})}}>Скрыть</button> */}
+        <span 
+      className={`${s.close} bi bi-caret-left-fill`}
+      onClick={()=>{this.setState({showPanel: !this.state.showPanel})}}
+      />
+        
         <button className={`${s.btnPromo} btn btn-warning`} onClick={() => { firebase.auth().onAuthStateChanged((user) => { this.props.SetPromo(user ? user.uid : null);});}}>
           Получить промокод
         </button>
@@ -61,6 +71,14 @@ class UserPanel extends Component {
          onChange={(e)=>{ this.setState({comment: e.target.value})}}
          ></textarea>
         <button onClick={()=>{this.addComment()}} className={`${s.btnComment} btn btn-warning`}>Отправить коментарий</button>
+      </div>
+      :
+      <div className={s.sideOrder_hide}>
+      
+      <span 
+      className={`${s.arrow} bi bi-caret-right-fill`}
+      onClick={()=>{this.setState({showPanel: !this.state.showPanel})}}
+      />
       </div>
     );
   }
