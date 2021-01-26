@@ -1,11 +1,10 @@
 
 const initialState = {
 
-    promocode: null,
-    order: [],
-    total: 0,
-    // accountLogin: false,
-    user: '', // email Юзера
+    promocode: null, // Тут промокод 
+    order: [],       // Корзина
+    total: 0,        // Общая стоимость
+    user: '',        // Еmail Юзера
     carouselItem : [
       {
         title: 'БИГ СЕТ',
@@ -23,9 +22,10 @@ const initialState = {
         desc: 'ФЭТБОЙ 2.0 / ВЕЙДЕР / ТРАМП / КОНГ / ДВА КАРТОФЕЛЯ ФРИ / ДВА ПО-ДЕРЕВЕНСКИ / СОУСЫ: ОСТРЫЙ / BBQ / ЧЕДДЕР / МЕДОВО-ГОРЬЧИЧНЫЙ / 1900г',
       },
     ],
-    comments: [],
-    showModal: false,
-    userLoggedIn: false, // Вошел ли вользователь
+    comments: [],          // Массив с коментариями
+    showModal: false,      // Показываем модальное окно
+    userLoggedIn: false,   // Вошел ли вользователь
+    openOrder: false,      // Открытие корзины
 }
 
 const reducer = (state = initialState, action) =>{
@@ -63,6 +63,8 @@ const reducer = (state = initialState, action) =>{
           return{...state, order : []}
         case 'SHOW_MODAL':
           return{...state, showModal : !state.showModal}
+        case 'SHOW_ORDER':
+          return{...state, openOrder : !state.openOrder}  
         default:
           return state;
       }

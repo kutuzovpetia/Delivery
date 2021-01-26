@@ -37,7 +37,7 @@ class Order extends Component {
     });
 
     return (
-      <div id="mySideOrder" className={s.sideOrder}>
+      <div id="mySideOrder" className={this.props.openOrder ? s.sideOrder_show : s.sideOrder}>
         <div className={` ${s.wrappTitle} d-flex align-items-center justify-content-between w-100`}>
           <h2 className={s.title}>Корзина</h2>
           <button onClick={()=>{this.props.clearOrder(); this.props.totalUpdate(0);}} className={`btn btn-warning`}>Очистить</button>
@@ -56,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     order: state.order,
     total: state.total,
+    openOrder: state.openOrder,
   };
 };
 

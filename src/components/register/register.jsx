@@ -39,7 +39,7 @@ class Register extends Component {
       .then((response) => {
 
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error.message));
     }
   };
 
@@ -48,6 +48,7 @@ class Register extends Component {
     
     return (
       <div className={s.wrapperReg}>
+        <div className={s.form}>
         <h2>{title}</h2>
         <div>
           <img src={email} alt="User" />
@@ -72,6 +73,7 @@ class Register extends Component {
         <button className={"btn btn-dark ml-4 mt-3"} onClick={this.createAcc}>
           {btnLabel}
         </button>
+        </div>
       </div>
     );
   }

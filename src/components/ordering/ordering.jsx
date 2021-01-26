@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import * as actions from '../../action/action';
 import Modal from "../modal-order";
 import Mod from "react-bootstrap/Modal";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 
 const botToken = "1596428981:AAG5zWC68zFnxFXiCe1veYKrFks8vdQ7QEI";
 const chatId = "-1001471493860";
@@ -40,6 +41,28 @@ class Ordering extends Component {
     this.sendMsg = this.sendMsg.bind(this);
   }
 
+  checkInput(){
+    const { name, phone, street, home, apart} = this.state;
+    if (!name || !phone || !street || !home || !apart) {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  showAlert(){
+    this.setState({ error: true });
+      setTimeout(() => {
+        this.setState({
+          error: false,
+        });
+      }, 2000);
+
+      return;
+  }
+
+
   reset() {
     this.setState({ name: "", phone: "", street: "", home: "", apart: "", comments: "", peopleCount: "", zdacha: "",});
   }
@@ -54,7 +77,7 @@ class Ordering extends Component {
   onPhoneChange(e) {
     const val = e.target.value;
     if (Number.isInteger(+val) && val.length <= 10) {
-      console.log(val);
+      // console.log(val);
       this.setState({ phone: val });
     }
   }
@@ -83,16 +106,16 @@ class Ordering extends Component {
   sendMsg() {
     const { name, phone, street, home, apart, cashType,peopleCount,zdacha,eco,comments, } = this.state;
 
-    if (!name || !phone || !street || !home || !apart) {
-      this.setState({ error: true });
-      setTimeout(() => {
-        this.setState({
-          error: false,
-        });
-      }, 2000);
+    // if (!name || !phone || !street || !home || !apart) {
+    //   this.setState({ error: true });
+    //   setTimeout(() => {
+    //     this.setState({
+    //       error: false,
+    //     });
+    //   }, 2000);
 
-      return;
-    }
+    //   return;
+    // }
 
     let menu = "";
 
@@ -100,7 +123,7 @@ class Ordering extends Component {
       menu += `  ${i + 1}) ${item.title} ${item.count} шт%0A`;
     });
 
-    console.log(this.props.order);
+    // console.log(this.props.order);
     const message = `Имя: ${name}%0A%0A
   ☎ Телефон: ${phone}%0A%0A
   🌁 Улица: ${street}%0A%0A
@@ -127,18 +150,20 @@ class Ordering extends Component {
     );
 
     alert("Заказ успешно принят!");
-    this.reset();
+    this.props.showMod();     // Скрываю модально окно
+    this.reset();             // Очищаю поля
+    this.props.clearOrder();  // Очищаю корзину
   }
 
   checkedChange() {
     const { cashType } = this.state;
     this.setState({ cashType: !cashType });
-    console.log(cashType);
+    // console.log(cashType);
   }
 
   render() {
-    console.log(this.props.show);
-    const { name,phone,street,home,apart,cashType,peopleCount,zdacha,eco,comments,} = this.state;
+    // console.log(this.props.show);
+    const { name,phone,street,home,apart,cashType,peopleCount,zdacha,eco,comments,discount} = this.state;
     return (
       <form id="telegram" className={`${s.wrapper}`}>
         {this.state.error ? (
@@ -267,7 +292,7 @@ class Ordering extends Component {
               value={this.state.eco}
               onChange={(e) => {
                 this.setState({ eco: !this.state.eco });
-                console.log(e.target.value);
+                // console.log(e.target.value);
               }}
             />
             <label className="ml-2 eco" htmlFor="eco">
@@ -302,14 +327,13 @@ class Ordering extends Component {
             type="button"
             className={s.ok}
             variant="warning"
-            // onClick={this.sendMsg}
-            onClick={()=>{this.props.showMod()}}
+            onClick={()=>{!this.checkInput() ? this.props.showMod() : this.showAlert()}}
           >
             СДЕЛАТЬ ЗАКАЗ
           </Button>
         </div>
 
-        <Mod show={this.props.show} onHide={this.props.showMod}>
+        <Mod show={this.props.show}>     {/*****убрал onHide={this.props.showMod}*/ }
           <Modal
             name={name}
             phone={phone}
@@ -322,6 +346,7 @@ class Ordering extends Component {
             eco={eco}
             comments={comments}
             sendMsg={this.sendMsg}
+            discount={discount}
           />
         </Mod>
       </form>

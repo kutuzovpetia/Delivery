@@ -7,7 +7,7 @@ import * as actions from "../../action/action";
 class Modal extends Component {
   
   render() {
-    const { name, phone, street, home, apart, cashType, peopleCount, zdacha, eco, comments} = this.props;
+    const { name, phone, street, home, apart, cashType, peopleCount, zdacha, eco, comments, discount} = this.props;
 
     return (
       <div className={`${s.wrapper}`}>
@@ -36,28 +36,40 @@ class Modal extends Component {
             </div>
             <div className={s.item}>
               <p>Оплата:</p>
-              <p>{cashType}</p>
+              <p>{cashType ? 'картой' : 'наличными'}</p>
             </div>
             <div className={s.item}>
               <p>Количество человек:</p>
-              <p>{peopleCount}</p>
+              <p>{peopleCount ? peopleCount : 1}</p>
             </div>
             <div className={s.item}>
               <p>Нужна сдача с:</p>
-              <p>{zdacha}</p>
+              <p>{zdacha ? zdacha : 'не указано'}</p>
             </div>
             <div className={s.item}>
               <p>Эко-упаковка:</p>
-              <p>{eco}</p>
+              <p>{eco ? 'нужна' : 'не нужна'}</p>
             </div>
             <div className={s.item}>
               <p>Коментарий:</p>
-              <p>{comments}</p>
+              <p>{comments ? comments : 'нет'}</p>
             </div>
+
             <div className={s.item}>
-              <p>Скидка:</p>
-              <p>нет</p>
+              {
+                  discount? 
+                  <div className={s.item}>
+                    <p>Скидка:</p>
+                    <p>-10%</p>
+                  </div>
+                  :
+                  <div className={s.item}>
+                    <p>Скидка:</p>
+                    <p>нет</p>
+                  </div>
+              }
             </div>
+
             <h2 className="text-center my-3">Меню</h2>
             {this.props.order.map((item) => {
               return (
@@ -67,9 +79,17 @@ class Modal extends Component {
                 </div>
               );
             })}
+
+            {
+              discount ?
+              <h3 className="text-center my-3">
+              Всего к оплате: {Math.round(this.props.total * (1 - 10 / 100))} &#8372;
+            </h3>:
             <h3 className="text-center my-3">
               Всего к оплате: {this.props.total} &#8372;
             </h3>
+            }
+           
           </div>
         </div>
         <div className={`d-flex justify-content-between`}>

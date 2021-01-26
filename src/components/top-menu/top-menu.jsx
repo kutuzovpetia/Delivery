@@ -5,26 +5,25 @@ import basket_ from "../../image/basket_.png";
 import basket from "../../image/basket.png";
 import {connect} from 'react-redux';
 import firebase from "firebase/app";
+import * as actions from "../../action/action";
 
 class TopMenu extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      openNav: false,
       userLoggedIn: false,
     };
   }
 
-  openNav = () => {
-    const { openNav } = this.state;
-    this.setState({
-      openNav: !openNav,
-    });
+  // openNav = () => {
+  //   const { openOrder, showOrder } = this.props;
+  //   showOrder();
+  //   console.log(openOrder);
 
-    const Order = document.getElementById("mySideOrder");
-    openNav ? (Order.style.width = "0") : (Order.style.width = "380px");
-  };
+  //   const Order = document.getElementById("mySideOrder");
+  //   openOrder ? (Order.style.width = "0") : (Order.style.width = "380px");
+  // };
 
   closeNav = () => {
     document.querySelector('#navbarNavAltMarkup').classList.remove('show');
@@ -59,7 +58,7 @@ class TopMenu extends Component {
             className={`${s.bask} navbar-toggler`}
             src={this.props.order.length === 0 ? basket : basket_}
             alt="..."
-            onClick={()=>{this.openNav(); this.closeNav()}}
+            onClick={()=>{this.props.showOrder(); this.closeNav()}}
           />
           
 
@@ -68,16 +67,16 @@ class TopMenu extends Component {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <NavLink onClick={this.closeNav} to="burgers" className={"nav-link"}>
+              <NavLink onClick={()=>{this.closeNav()}} to="burgers" className={"nav-link"}>
                 Главная
               </NavLink>
-              <NavLink onClick={this.closeNav} to="contact" className={"nav-link"}>
+              <NavLink onClick={()=>{this.closeNav()}} to="contact" className={"nav-link"}>
                 Контакты
               </NavLink>
-              <NavLink onClick={this.closeNav} to="comments" className={"nav-link"}>
+              <NavLink onClick={()=>{this.closeNav()}} to="comments" className={"nav-link"}>
                 Отзывы
               </NavLink>
-              <NavLink onClick={this.closeNav} to="about" className={"nav-link"}>
+              <NavLink onClick={()=>{this.closeNav()}} to="about" className={"nav-link"}>
                 О нас
               </NavLink>
             </div>
@@ -96,7 +95,7 @@ class TopMenu extends Component {
               
               <div className={`${s.style} d-flex align-items-center`}>
                 <div className={`${s.topI}`}>
-                  <img src={this.props.order.length === 0 ? basket : basket_} alt="..." onClick={this.openNav} />
+                  <img src={this.props.order.length === 0 ? basket : basket_} alt="..." onClick={()=>{this.props.showOrder()}} />
                 </div>
                 <span> {this.props.total} &#8372;</span>
               </div>
@@ -113,7 +112,8 @@ const mapStateToProps = (state) => {
       order: state.order,
       total: state.total,
       logining: state.accountLogin,
+      openOrder: state.openOrder,
   }
 }
 
-export default connect(mapStateToProps)(TopMenu);
+export default connect(mapStateToProps, actions)(TopMenu);

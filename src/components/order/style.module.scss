@@ -68,6 +68,63 @@
  }   
 }
 
+/*Показати корзину*/
+.sideOrder_show {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  /* 100% Full-height */
+  width: 380px;
+  /* 0 ширина - изменить это с помощью JavaScript */
+  position: fixed;
+  /* Оставайтесь на месте */
+  z-index: 1;
+  /* Оставайтесь сверху */
+  top: 0;
+  /* Оставайтесь наверху */
+  right: 0;
+  background-color: #111;
+  /* Фон черный*/
+  overflow-x: hidden;
+  /* Отключить горизонтальную прокрутку */
+  padding-top: 80px;
+  transition: 0.5s;
+  /* 0.5 второй эффект перехода слайда в боковой навигации */
+
+
+  .wrapper::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  .wrapper{
+    -ms-overflow-style: none;
+  }
+  
+  .wrapper {
+    overflow: -moz-scrollbars-none;
+  }
+  
+  /*ЗАБИРАЄМ ПРОКРУТКУ КОРЗИНИ*/
+  /***************************/
+
+  .wrapper{
+    max-height: 100vh;
+    overflow: scroll;
+  }
+
+ .total{
+  position: absolute;
+  bottom: 0;
+  span{
+    font-weight: 600;
+    font-size: 22px;
+  }
+ }   
+}
+/******************/
+
 /* Ссылки меню навигации */
 .sideOrder a {
   padding: 8px 8px 8px 32px;

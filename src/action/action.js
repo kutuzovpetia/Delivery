@@ -9,3 +9,4 @@ export const SetUser = (user) => ({type: 'SET_USER', value: user });
 export const SetComments = (data) => ({type: 'SET_COMMENTS', value: data });
 export const clearOrder = () => ({type: 'CLEAR_ORDER'});
 export const showMod = () => ({type: 'SHOW_MODAL'});
+export const showOrder = () => ({type: 'SHOW_ORDER'});
