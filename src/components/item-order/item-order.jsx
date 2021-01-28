@@ -4,19 +4,18 @@ import trash from "../../image/trash.png";
 import img from "../../image/f1.png";
 import * as actions from '../../action/action';
 import {connect} from 'react-redux';
-// import Button from 'react-bootstrap/Button'
+
 
 class ItemOrder extends Component {
   constructor(props) {
     super(props);
-    // this.state = { count: 1,};
     this.onPlus = this.onPlus.bind(this);
     this.onMinus = this.onMinus.bind(this);
     this.addPlus = this.addPlus.bind(this);
     this.addMinus = this.addMinus.bind(this);
   }
 
-  addPlus() {
+  addPlus() { // Добавление цены в общую стоимость
     const { total, totalUpdate, price } = this.props;
     const s = total + parseFloat(price);
     totalUpdate(s);
@@ -43,27 +42,10 @@ class ItemOrder extends Component {
     this.addMinus();
   }
 
-  // onPlus() {
-  //   let {count} = this.state;
-  //   this.setState({
-  //     count: ++count
-  //   })
-  //   this.addPlus();
-  // }
-  
-  // onMinus() {
-  //   let {count} = this.state;
-  //   if(count === 1){return;}
-  //   this.setState({
-  //     count: --count
-  //   })
-  //   this.addMinus();
-  // }
-
   render() {
     const {title, deleteItem, id, price, foodImg} = this.props;
 
-    const sum = this.props.count * price;
+    const sum = this.props.count * price; // стоимость всех елементов
     return (
       <div className={`${s.item}`}>
         <div>

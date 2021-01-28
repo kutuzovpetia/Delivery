@@ -4,8 +4,6 @@ import vkIcon from '../../image/vk.svg';
 import faceIcon from '../../image/facebook.svg';
 import instaIcon from '../../image/instagram.svg';
 
-
-
 export default class Contact extends Component{
     render(){
 

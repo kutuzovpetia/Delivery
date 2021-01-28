@@ -28,17 +28,11 @@ class Register extends Component {
     const {type} = this.props;
 
     if (type === "reg") {
-      try {
-        await firebase.auth().createUserWithEmailAndPassword(email, pass);
-      } catch (error) {
-        alert(error.message);
-      }
+        await firebase.auth().createUserWithEmailAndPassword(email, pass)
+        .catch((error) => alert(error.message))
     }
     else if(type === 'enter'){
       await firebase.auth().signInWithEmailAndPassword(email, pass)
-      .then((response) => {
-
-      })
       .catch((error) => alert(error.message));
     }
   };

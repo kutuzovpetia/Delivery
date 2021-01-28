@@ -5,7 +5,6 @@ import s from './style.module.css';
 
 export default class ItemMenuFoods extends Component{
 
-
     render(){
 
         return(

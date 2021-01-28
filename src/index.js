@@ -12,25 +12,11 @@ import reducer from './reduser/reduser';
 
 firebase.initializeApp(Config);
 
-/*****************************************************************/ 
-// function componentDidMount(){
-//   const db = firebase.database();
-//   const name = db.ref('Burgers');
-//   name.on('value', (elem)=>{
-//     this.setState({
-//       data : elem.val()
-//     });
-//   });
-// }
-/*****************************************************************/ 
-
 const store = createStore(reducer);
 
 ReactDOM.render(
-  // <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>,
-  // </React.StrictMode>,
   document.getElementById('root')
 );

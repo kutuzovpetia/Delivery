@@ -16,15 +16,6 @@ class TopMenu extends Component {
     };
   }
 
-  // openNav = () => {
-  //   const { openOrder, showOrder } = this.props;
-  //   showOrder();
-  //   console.log(openOrder);
-
-  //   const Order = document.getElementById("mySideOrder");
-  //   openOrder ? (Order.style.width = "0") : (Order.style.width = "380px");
-  // };
-
   closeNav = () => {
     document.querySelector('#navbarNavAltMarkup').classList.remove('show');
   }

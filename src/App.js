@@ -5,7 +5,6 @@ import Order from "./components/order";
 import Content from "./components/content";
 import TopMenu from "./components/top-menu";
 import Register from "./components/register";
-// import MenuFoods from "./components/menu-foods";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import firebase from "firebase/app";
 import Contact from './components/contact';
@@ -15,7 +14,6 @@ import { connect } from "react-redux";
 import * as actions from "./action/action.js";
 import Comments from "./components/comments";
 import About from "./components/about";
-// import Modal from "./components/modal-order";
 
 
 class App extends Component {
@@ -104,22 +102,27 @@ class App extends Component {
               </Route>
 
               <Route path={'/fish'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
               <Route path={'/meate'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
               <Route path={'/pasta'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
               <Route path={'/pizza'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
 
               <Route path={'/sushi'}>
+              <Header className={s.header}/>
               <Content addItem={this.addItem} data={data}></Content>
               </Route>
             </div>

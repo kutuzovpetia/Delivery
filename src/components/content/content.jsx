@@ -13,12 +13,12 @@ class Content extends Component {
     this.getItem = this.getItem.bind(this);
   }
 
-  getItem(Id, Title, Price, Img) {
+  getItem(Id, Title, Price, Img) { // Получение id , добавление в корзину
     const newItem = { id: Id, title: Title, price: Price, img: Img, count: 1 }; // новий об’экт
     const{ totalUpdate, total, addItemToOrder, order } = this.props;
     let check = false; 
     order.forEach(el=> { if (el.id === Id) { check = true;} });
-    if (check) { return; }
+    if (check) { return; }  // Если элемент есть в корзине, выходим
     else { 
       addItemToOrder(newItem);
       const s = total + parseFloat(Price); // Обновляєм ціну

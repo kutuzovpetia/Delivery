@@ -44,8 +44,6 @@ class UserPanel extends Component {
         <h5>{this.props.userMail}</h5>
         <p>{this.props.promocode ? this.props.promocode : 'Получить скидку в 10%'}</p>
         
-
-        {/* <button className={`${s.close} btn btn-danger`} onClick={() => { this.setState({showPanel: !this.state.showPanel})}}>Скрыть</button> */}
         <span 
       className={`${s.close} bi bi-caret-left-fill`}
       onClick={()=>{this.setState({showPanel: !this.state.showPanel})}}
